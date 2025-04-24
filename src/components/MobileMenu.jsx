@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 export const MobileMenu = ({ menuOpen, setMenuOpen }) => {
 
@@ -12,47 +13,47 @@ export const MobileMenu = ({ menuOpen, setMenuOpen }) => {
       
       </button>
 
-      <a href="#home" onClick={() => setMenuOpen(false)} className={`text-2xl font-semibold text-white my-4 transform transition-transform duration-300 ${ menuOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5" } `}>
+      <Link to="/" onClick={() => setMenuOpen(false)} className={`text-2xl font-semibold text-white my-4 transform transition-transform duration-300 ${ menuOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5" } `}>
       
         Home
       
-      </a>
+      </Link>
 
-      <a href="#decide" onClick={() => setMenuOpen(false)} className={`text-2xl font-semibold text-white my-4 transform transition-transform duration-300 ${ menuOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5" } `}>
+      <Link to="/decide" onClick={() => setMenuOpen(false)} className={`text-2xl font-semibold text-white my-4 transform transition-transform duration-300 ${ menuOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5" } `}>
         
         DECIDE Framework
 
-      </a>
+      </Link>
 
-      <a href="#evaluation" onClick={() => setMenuOpen(false)} className={`text-2xl font-semibold text-white my-4 transform transition-transform duration-300 ${ menuOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5" } `}>
+      <Link to="/evaluation" onClick={() => setMenuOpen(false)} className={`text-2xl font-semibold text-white my-4 transform transition-transform duration-300 ${ menuOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5" } `}>
        
         Evaluation Result
         
-      </a>
+      </Link>
 
-      <a href="#tasks" onClick={() => setMenuOpen(false)} className={`text-2xl font-semibold text-white my-4 transform transition-transform duration-300 ${ menuOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5" } `}>
+      <Link to="/tasks" onClick={() => setMenuOpen(false)} className={`text-2xl font-semibold text-white my-4 transform transition-transform duration-300 ${ menuOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5" } `}>
 
         List of Tasks
 
-      </a>
+      </Link>
 
-      <a href="#improvements" onClick={() => setMenuOpen(false)} className={`text-2xl font-semibold text-white my-4 transform transition-transform duration-300 ${ menuOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5" } `}>
+      <Link to="/improvements" onClick={() => setMenuOpen(false)} className={`text-2xl font-semibold text-white my-4 transform transition-transform duration-300 ${ menuOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5" } `}>
 
         Proposed Improvements
 
-      </a>
+      </Link>
 
-      <a href="#workbook" onClick={() => setMenuOpen(false)} className={`text-2xl font-semibold text-white my-4 transform transition-transform duration-300 ${ menuOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5" } `}>
+      <Link to="/workbook" onClick={() => setMenuOpen(false)} className={`text-2xl font-semibold text-white my-4 transform transition-transform duration-300 ${ menuOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5" } `}>
 
         Workbook
 
-      </a>
+      </Link>
 
-      <a href="#about" onClick={() => setMenuOpen(false)} className={`text-2xl font-semibold text-white my-4 transform transition-transform duration-300 ${ menuOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5" } `}>
+      <Link to="/about" onClick={() => setMenuOpen(false)} className={`text-2xl font-semibold text-white my-4 transform transition-transform duration-300 ${ menuOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5" } `}>
 
         About
 
-      </a>
+      </Link>
 
     </div>
   );

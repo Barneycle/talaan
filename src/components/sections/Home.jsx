@@ -20,7 +20,7 @@ export const Home = () => {
 
   return ( 
   
-  <section id="home" className="min-h-screen flex flex-col items-center justify-start relative pt-30" >
+  <section id="home" className="min-h-screen flex flex-col items-center justify-start relative pt-30 pb-10" >
 
         <div className="text-center z-10 px-4">
 
@@ -70,7 +70,7 @@ export const Home = () => {
 
             <img src={Villarin} alt="John Vincent Villarin" className="w-[300px] aspect-square object-cover rounded-full mb-4 transition-transform duration-200 hover:scale-115" />
 
-            <p className="text-white">John Vincent Villarin - Evaluator</p>
+            <p className="text-gray-400 text-lg">John Vincent Villarin - UI/UX Designer</p>
 
           </div>
 
@@ -78,7 +78,7 @@ export const Home = () => {
 
             <img src={Sarte} alt="Jhay Adven Sarte" className="w-[300px] aspect-square object-cover rounded-full mb-4 transition-transform duration-200 hover:scale-115" />
 
-            <p className="text-white">Jhay Adven Sarte - Evaluator</p>
+            <p className="text-gray-400 text-lg">Jhay Adven Sarte - Image & Asset Editor</p>
 
           </div>
 
@@ -86,7 +86,7 @@ export const Home = () => {
 
             <img src={Bruzo} alt="Joezel Bruzo" className="w-[300px] aspect-square object-cover rounded-full mb-4 transition-transform duration-200 hover:scale-115" />
 
-            <p className="text-white">Joezel Bruzo - QA</p>
+            <p className="text-gray-400 text-lg">Joezel Bruzo - Quality Assurance</p>
 
           </div>
 
@@ -94,7 +94,7 @@ export const Home = () => {
 
             <img src={Sales} alt="Cristian Jay Sales" className="w-[300px] aspect-square object-cover rounded-full mb-4 transition-transform duration-200 hover:scale-115" />
 
-            <p className="text-white">Cristian Jay Sales - Front End Developer</p>
+            <p className="text-gray-400 text-lg">Cristian Jay Sales - Front End Developer</p>
 
           </div>
 
@@ -102,11 +102,9 @@ export const Home = () => {
 
             <img src={Campana} alt="Alec Campana" className="w-[300px] aspect-square object-cover rounded-full mb-4 transition-transform duration-200 hover:scale-115" />
 
-            <p className="text-white">Alec Campana - Lead Developer</p>
+            <p className="text-gray-400 text-lg">Alec Campana - Lead Developer</p>
 
           </div>
-
-          <div></div>
 
       </div>
 

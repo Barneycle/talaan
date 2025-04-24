@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 export const Navbar = ({ menuOpen, setMenuOpen }) => {
 
@@ -10,7 +11,7 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
 
   return (
 
-    <nav className="fixed top-0 w-full z-40 bg-[rgba(10, 10, 10, 0.8)] backdrop-blur-lg border-b border-white/10 shadow-lg">
+    <nav className="fixed top-0 w-full z-40 bg-[rgba(0,0,0,0.7)] backdrop-blur-lg border-b border-white/10 shadow-lg">
 
       <div className="max-w-7xl mx-auto px-4">
 
@@ -30,51 +31,28 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
 
           <div className="hidden md:flex items-center space-x-8">
 
-            <a href="#home" className="text-gray-300 hove:text-white transition-colors">
-              
-              {" "} Home
+          <Link to="/" className="text-gray-300 hover:text-white transition-colors">Home</Link>
 
-            </a>
+          <Link to="/decide" className="text-gray-300 hover:text-white transition-colors">DECIDE Framework</Link>
 
-            <a href="#decide" className="text-gray-300 hove:text-white transition-colors">
+          <Link to="/evaluation" className="text-gray-300 hover:text-white transition-colors">Evaluation Result</Link>
 
-              {" "} DECIDE Framework {" "}
+          <Link to="/tasks" className="text-gray-300 hover:text-white transition-colors">List of Tasks</Link>
 
-            </a>
+          <Link to="/improvements" className="text-gray-300 hover:text-white transition-colors">Proposed Improvements</Link>
 
-            <a href="#evaluation" className="text-gray-300 hove:text-white transition-colors">
+          <Link to="/Workbook" className="text-gray-300 hover:text-white transition-colors">Workbook</Link>
 
-              {" "} Evaluation Result {" "}
-
-            </a>
-
-            <a href="#tasks" className="text-gray-300 hove:text-white transition-colors">
-
-              {" "} List of Tasks {" "}
-
-            </a>
-
-            <a href="#improvement" className="text-gray-300 hove:text-white transition-colors">
-
-              {" "} Proposed Impovements {" "}
-
-            </a>
-
-            <a href="#workbook" className="text-gray-300 hove:text-white transition-colors">
-
-              {" "} Workbook {" "}
-
-            </a>
-
-            <a href="#about" className="text-gray-300 hove:text-white transition-colors">
-
-              {" "} About {" "}
-
-            </a>
+          <Link to="/About" className="text-gray-300 hover:text-white transition-colors">About</Link>
 
           </div>
+
         </div>
+
       </div>
+
     </nav>
+
   );
+
 };
