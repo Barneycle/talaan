@@ -50,7 +50,7 @@ export const Decide = () => {
 
             { title: "C", label: "Choose evaluation methods", desc: [
                 
-                "We will use heuristic evaluation based on Nielsen’s 10 usability heuristics, supported by direct user observation and system walkthroughs."
+                "We will use heuristic evaluation based on Nielsen’s 10 Usability Heuristics, supported by direct user observation and system walkthroughs."
             
             ] },
 

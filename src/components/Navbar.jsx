@@ -41,10 +41,6 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
 
           <Link to="/improvements" className="text-gray-300 hover:text-white transition-colors">Proposed Improvements</Link>
 
-          <Link to="/Workbook" className="text-gray-300 hover:text-white transition-colors">Workbook</Link>
-
-          <Link to="/About" className="text-gray-300 hover:text-white transition-colors">About</Link>
-
           </div>
 
         </div>
