@@ -207,7 +207,7 @@ export const Evaluation = () => {
 
         </h2>
 
-        <p className="text-gray-400 text-lg mb-8 max-w-prose mx-auto text-justify leading-relaxed">
+<p className="text-gray-400 text-sm md:text-base lg:text-lg mb-8 max-w-prose mx-auto text-justify leading-relaxed">
 
           This heuristic evaluation was conducted by a group of student evaluators to assess the usability of the prison management system prototype. Using Nielsen’s 10 Usability Heuristics, the team identified interface issues and areas for improvement to enhance user experience. The evaluation focused on helping the system better meet the needs of its users: prison staff and system administrators.
         
@@ -215,18 +215,18 @@ export const Evaluation = () => {
         
       </div>
 
-      <div className="overflow-x-auto w-[80%] px-4">
+<div className="overflow-x-auto w-full max-w-full px-4">
 
-<table className="min-w-full text-sm text-white bg-white/5 backdrop-blur-md rounded-xl overflow-hidden">
+<table className="w-full text-base sm:text-lg md:text-xl text-white bg-white/5 backdrop-blur-md rounded-xl overflow-hidden">
 
-          <thead className="bg-pink-500/10 text-pink-300 uppercase text-xs">
+<thead className="bg-pink-500/10 text-pink-300 uppercase">
             
             <tr>
 
-              <th className="px-4 py-3 text-left">Heuristic</th>
-              <th className="px-4 py-3 text-left">Issue Description</th>
-              <th className="px-4 py-3 text-left">Recommendation</th>
-              <th className="px-4 py-3 text-left">Screenshot</th>
+              <th className="px-6 sm:px-8 md:px-10 py-4 text-left text-base sm:text-lg md:text-xl">Heuristic</th>
+              <th className="px-6 sm:px-8 md:px-10 py-4 text-left text-base sm:text-lg md:text-xl">Issue Description</th>
+              <th className="px-6 sm:px-8 md:px-10 py-4 text-left text-base sm:text-lg md:text-xl">Recommendation</th>
+              <th className="px-6 sm:px-8 md:px-10 py-4 text-left text-base sm:text-lg md:text-xl">Screenshot</th>
             
             </tr>
 
@@ -250,7 +250,7 @@ export const Evaluation = () => {
 
                         <div key={pdfIdx} className="flex items-center gap-2">
 
-                          <span className="text-pink-300 cursor-pointer hover:underline text-lg p-5" onClick={() => setSelectedPDF(pdf.path)} >
+<span className="text-pink-300 cursor-pointer hover:underline text-sm md:text-base lg:text-lg p-5" onClick={() => setSelectedPDF(pdf.path)} >
 
                             {pdf.name}
 
@@ -270,9 +270,9 @@ export const Evaluation = () => {
 
                 <tr key={idx}>
                   
-                  <td className="px-4 py-3 align-top">{row.heuristic}</td>
+<td className="px-6 sm:px-8 md:px-10 py-4 align-top">{row.heuristic}</td>
                   
-                  <td className="px-10 py-3 align-top">
+<td className="px-6 sm:px-8 md:px-10 py-4 align-top">
                     
                     {Array.isArray(row.issue) ? ( 
                       
@@ -290,35 +290,21 @@ export const Evaluation = () => {
 
                   </td>
 
-                  <td className="px-4 py-3 align-top">
-
-                    {Array.isArray(row.recommendation) ? (
-
-                      <ul className="list-disc list-inside space-y-1">
-
-                        {row.recommendation.map((item, i) => ( <li key={i}>{item}</li> ))}
-
-                      </ul> ) : ( row.recommendation )}
-
-                  </td>
-
-<td className="px-4 py-3 align-top">
-
-  <div className="flex flex-wrap gap-2">
-
-    {row.images.map((imgSrc, imgIdx) => (
-
-      <div key={imgIdx} className="relative">
-
-        <img src={imgSrc} alt={`Screenshot for ${row.heuristic} #${imgIdx + 1}`} onClick={() => openImage(imgSrc)} className="w-20 sm:w-32 md:w-40 max-w-full h-auto rounded-md shadow-md cursor-pointer hover:scale-105 transition-transform" />
-
-      </div> 
-
-    ))}
-
-  </div>
-
-</td>
+              <td className="px-6 sm:px-8 md:px-10 py-4 align-top">  
+                {Array.isArray(row.recommendation) ? (
+                  <ul className="list-disc list-inside space-y-1">
+                    {row.recommendation.map((item, i) => ( <li key={i}>{item}</li> ))}
+                  </ul> ) : ( row.recommendation )}
+              </td>
+              <td className="px-6 sm:px-8 md:px-10 py-4 align-top">
+                <div className="flex flex-wrap gap-2">
+                  {row.images.map((imgSrc, imgIdx) => (
+                    <div key={imgIdx} className="relative">
+                      <img src={imgSrc} alt={`Screenshot for ${row.heuristic} #${imgIdx + 1}`} onClick={() => openImage(imgSrc)} className="w-20 sm:w-32 md:w-40 max-w-full h-auto rounded-md shadow-md cursor-pointer hover:scale-105 transition-transform" />
+                    </div> 
+                  ))}
+                </div>
+              </td>
 
                 </tr>
 

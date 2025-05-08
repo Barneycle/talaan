@@ -6,19 +6,19 @@ export const Decide = () => {
 
         <div className="text-center z-10 px-4">
 
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-rose-500 to-pink-400 bg-clip-text text-transparent leading-right">
+<h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 bg-gradient-to-r from-rose-500 to-pink-400 bg-clip-text text-transparent leading-right">
 
             DECIDE Framework
 
           </h1>
 
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold mb-6 text-gray-100 tracking-tight text-center leading-snug">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold mb-6 text-gray-100 tracking-tight text-center leading-snug">
 
                 Introduction
             
             </h2>
 
-            <p className="text-gray-400 text-lg mb-8 max-w-prose mx-auto text-justify leading-relaxed">
+            <p className="text-gray-400 text-sm sm:text-base md:text-lg lg:text-xl mb-8 max-w-prose mx-auto text-justify leading-relaxed">
                 
                 This section presents a heuristic evaluation of the Prison Management System, guided by Jakob Nielsen’s 10 Usability Heuristics. The goal is to systematically assess the interface for potential usability issues, consistency, and user control. By identifying areas for improvement, we aim to enhance the system's overall effectiveness and user experience for administrative personnel and stakeholders alike.
             

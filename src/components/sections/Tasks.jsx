@@ -71,13 +71,13 @@ export const Tasks = () => {
 
         <div className="text-center z-10 px-4">
 
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-rose-500 to-pink-400 bg-clip-text text-transparent leading-right">
+<h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 bg-gradient-to-r from-rose-500 to-pink-400 bg-clip-text text-transparent leading-right">
 
             List of Tasks
 
           </h1>
 
-          <p className="text-gray-400 text-lg mb-8 max-w-prose mx-auto text-justify leading-relaxed">
+          <p className="text-gray-400 text-sm sm:text-base md:text-lg lg:text-xl mb-8 max-w-prose mx-auto text-justify leading-relaxed">
 
             We performed these various tasks during the Heuristic Evaluation of the Prison Management System
 
@@ -87,9 +87,9 @@ export const Tasks = () => {
   
         <div className="overflow-x-auto w-[80%] px-4">
 
-          <table className="min-w-full text-sm text-white bg-white/5 backdrop-blur-md rounded-xl overflow-hidden">
+<table className="min-w-full text-sm sm:text-base md:text-lg lg:text-xl text-white bg-white/5 backdrop-blur-md rounded-xl overflow-hidden">
 
-            <thead className="bg-pink-500/10 text-pink-300 text-xs">
+            <thead className="bg-pink-500/10 text-pink-300 text-xs sm:text-sm md:text-base lg:text-lg">
 
               <tr>
 

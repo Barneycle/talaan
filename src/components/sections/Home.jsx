@@ -30,7 +30,7 @@ export const Home = () => {
 
           </h1>
 
-          <p className="text-gray-400 text-lg mb-8 max-w-prose mx-auto text-justify leading-relaxed">
+<p className="text-gray-400 text-sm md:text-base lg:text-lg mb-8 max-w-prose mx-auto text-justify leading-relaxed">
 
           This evaluation assesses the usability of the Prison Management System website based on Nielsen’s 10 usability heuristics.
           The analysis identifies potential usability issues, evaluates interface consistency, and ensures the system supports user control, error prevention, and clear navigation.
@@ -70,7 +70,7 @@ export const Home = () => {
 
             <img src={Villarin} alt="John Vincent Villarin" className="w-[300px] aspect-square object-cover rounded-full mb-4 transition-transform duration-200 hover:scale-115" />
 
-            <p className="text-gray-400 text-lg">John Vincent Villarin - UI/UX Designer</p>
+<p className="text-gray-400 text-sm md:text-base lg:text-lg">John Vincent Villarin - UI/UX Designer</p>
 
           </div>
 
@@ -78,7 +78,7 @@ export const Home = () => {
 
             <img src={Sarte} alt="Jhay Adven Sarte" className="w-[300px] aspect-square object-cover rounded-full mb-4 transition-transform duration-200 hover:scale-115" />
 
-            <p className="text-gray-400 text-lg">Jhay Adven Sarte - Image & Asset Editor</p>
+<p className="text-gray-400 text-sm md:text-base lg:text-lg">Jhay Adven Sarte - Image & Asset Editor</p>
 
           </div>
 
@@ -86,7 +86,7 @@ export const Home = () => {
 
             <img src={Bruzo} alt="Joezel Bruzo" className="w-[300px] aspect-square object-cover rounded-full mb-4 transition-transform duration-200 hover:scale-115" />
 
-            <p className="text-gray-400 text-lg">Joezel Bruzo - Quality Assurance</p>
+<p className="text-gray-400 text-sm md:text-base lg:text-lg">Joezel Bruzo - Quality Assurance</p>
 
           </div>
 
@@ -94,7 +94,7 @@ export const Home = () => {
 
             <img src={Sales} alt="Cristian Jay Sales" className="w-[300px] aspect-square object-cover rounded-full mb-4 transition-transform duration-200 hover:scale-115" />
 
-            <p className="text-gray-400 text-lg">Cristian Jay Sales - Front End Developer</p>
+<p className="text-gray-400 text-sm md:text-base lg:text-lg">Cristian Jay Sales - Front End Developer</p>
 
           </div>
 
@@ -102,7 +102,7 @@ export const Home = () => {
 
             <img src={Campana} alt="Alec Campana" className="w-[300px] aspect-square object-cover rounded-full mb-4 transition-transform duration-200 hover:scale-115" />
 
-            <p className="text-gray-400 text-lg">Alec Campana - Lead Developer</p>
+<p className="text-gray-400 text-sm md:text-base lg:text-lg">Alec Campana - Lead Developer</p>
 
           </div>
 
