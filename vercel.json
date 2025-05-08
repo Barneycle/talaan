@@ -1,0 +1,6 @@
+{
+    "rewrites": [
+      { "source": "/hci2ProjectEvaluation/(.*)", "destination": "/hci2ProjectEvaluation/index.html" }
+    ]
+  }
+  

@@ -13,7 +13,7 @@ export const MobileMenu = ({ menuOpen, setMenuOpen }) => {
       
       </button>
 
-      <Link to="/" onClick={() => setMenuOpen(false)} className={`text-2xl font-semibold text-white my-4 transform transition-transform duration-300 ${ menuOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5" } `}>
+      <Link to="/hci2ProjectEvaluation" onClick={() => setMenuOpen(false)} className={`text-2xl font-semibold text-white my-4 transform transition-transform duration-300 ${ menuOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5" } `}>
       
         Home
       
@@ -34,24 +34,6 @@ export const MobileMenu = ({ menuOpen, setMenuOpen }) => {
       <Link to="/tasks" onClick={() => setMenuOpen(false)} className={`text-2xl font-semibold text-white my-4 transform transition-transform duration-300 ${ menuOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5" } `}>
 
         List of Tasks
-
-      </Link>
-
-      <Link to="/improvements" onClick={() => setMenuOpen(false)} className={`text-2xl font-semibold text-white my-4 transform transition-transform duration-300 ${ menuOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5" } `}>
-
-        Proposed Improvements
-
-      </Link>
-
-      <Link to="/workbook" onClick={() => setMenuOpen(false)} className={`text-2xl font-semibold text-white my-4 transform transition-transform duration-300 ${ menuOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5" } `}>
-
-        Workbook
-
-      </Link>
-
-      <Link to="/about" onClick={() => setMenuOpen(false)} className={`text-2xl font-semibold text-white my-4 transform transition-transform duration-300 ${ menuOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5" } `}>
-
-        About
 
       </Link>
 
