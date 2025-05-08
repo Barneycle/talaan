@@ -17,7 +17,7 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
 
         <div className="flex justify-between items-center h-16">
 
-          <Link to="/hci2ProjectEvaluation" className="font-mono text-xl font-bold text-white">
+          <Link to="/" className="font-mono text-xl font-bold text-white">
 
             {" "} Group<span className="text-pink-400"> Seven</span> {" "}
 
