@@ -10,7 +10,7 @@ function AnimatedRoutes() {
   return (
     <div>
       <Routes location={location} key={location.pathname}>
-        <Route path="/hci2ProjectEvaluation" element={<Home />} />
+        <Route path="/" element={<Home />} />
         <Route path="/decide" element={<Decide />} />
         <Route path="/evaluation" element={<Evaluation />} />
         <Route path="/tasks" element={<Tasks />} />
