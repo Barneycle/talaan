@@ -1,14 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App";
 import { BrowserRouter } from "react-router-dom";
+import App from "./App";
 import './index.css';
 
+const basename = import.meta.env.MODE === 'production' ? '/hci2ProjectEvaluation' : '/';
+
 ReactDOM.createRoot(document.getElementById("root")).render(
-
-<BrowserRouter>
-  <App />
-</BrowserRouter>
-
-
+  <BrowserRouter basename={basename}>
+    <App />
+  </BrowserRouter>
 );
