@@ -4,5 +4,5 @@ import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
   plugins: [react(), tailwindcss()],
-  base: process.env.NODE_ENV === "production" ? "/hci2ProjectEvaluation/" : "/",
+  base: process.env.VITE_BASE_PATH === "production" ? "/hci2ProjectEvaluation/" : "/",
 });
