@@ -302,19 +302,23 @@ export const Evaluation = () => {
 
                   </td>
 
-                  <td className="px-4 py-3 align-top flex flex-wrap gap-2">
+<td className="px-4 py-3 align-top">
 
-                    {row.images.map((imgSrc, imgIdx) => (
+  <div className="flex flex-wrap gap-2">
 
-                      <div key={imgIdx} className="relative">
+    {row.images.map((imgSrc, imgIdx) => (
 
-                        <img src={imgSrc} alt={`Screenshot for ${row.heuristic} #${imgIdx + 1}`} onClick={() => openImage(imgSrc)} className="w-40 h-auto rounded-md shadow-md cursor-pointer hover:scale-105 transition-transform" />
+      <div key={imgIdx} className="relative">
 
-                      </div> 
-                    
-                    ))}
-                  
-                  </td>
+        <img src={imgSrc} alt={`Screenshot for ${row.heuristic} #${imgIdx + 1}`} onClick={() => openImage(imgSrc)} className="w-20 sm:w-32 md:w-40 max-w-full h-auto rounded-md shadow-md cursor-pointer hover:scale-105 transition-transform" />
+
+      </div> 
+
+    ))}
+
+  </div>
+
+</td>
 
                 </tr>
 
@@ -328,47 +332,47 @@ export const Evaluation = () => {
 
       {selectedImage && (
 
-        <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50" onClick={closeImage} >
-          
-          <img src={selectedImage} alt="Enlarged" className="max-w-[1500px] max-h-[90vh] rounded-lg shadow-2xl" />
-
-        </div>
-
-      )}
-
-      {selectedPDF && (
-
-        <div className="fixed inset-0 bg-black bg-opacity-90 flex flex-col items-center justify-center z-50 p-0">
-          
-          <div className="w-full h-full bg-gray-900 rounded-lg shadow-xl flex flex-col">
-
-            <div className="flex justify-between items-center p-4 border-b border-gray-700">
-
-              <h3 className="text-lg font-medium text-white">PDF Preview</h3>
-
-              <button onClick={() => setSelectedPDF(null)} className="text-gray-300 hover:text-white p-2 rounded-full hover:bg-gray-700 transition-colors">
-
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-
-                </svg>
-
-              </button>
-
-            </div>
-
-            <div className="flex-1 overflow-hidden">
-
-              <iframe src={`${selectedPDF}#view=fitH`} className="w-full h-full" title="PDF Preview" frameBorder="0" />
-
-            </div>
-
+        <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 p-4" onClick={closeImage} >
+          <div className="max-w-full max-h-full overflow-auto rounded-lg shadow-2xl">
+            <img src={selectedImage} alt="Enlarged" className="max-w-full max-h-full rounded-lg" />
           </div>
-          
         </div>
 
       )}
+
+{selectedPDF && (
+
+  <div className="fixed inset-0 bg-black bg-opacity-90 flex flex-col items-center justify-center z-50 p-4 overflow-auto">
+    
+    <div className="w-full h-full bg-gray-900 rounded-lg shadow-xl flex flex-col">
+
+      <div className="flex justify-between items-center p-4 border-b border-gray-700">
+
+        <h3 className="text-lg font-medium text-white">PDF Preview</h3>
+
+        <button onClick={() => setSelectedPDF(null)} className="text-gray-300 hover:text-white p-2 rounded-full hover:bg-gray-700 transition-colors">
+
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+
+          </svg>
+
+        </button>
+
+      </div>
+
+      <div className="flex-1 overflow-hidden">
+
+        <iframe src={`${selectedPDF}#view=fitH`} className="w-full h-full" title="PDF Preview" frameBorder="0" />
+
+      </div>
+
+    </div>
+    
+  </div>
+
+)}
 
     </section>
 
