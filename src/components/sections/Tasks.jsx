@@ -1,8 +1,73 @@
 export const Tasks = () => {
 
-    return ( 
+    const evaluatorsWithTasks = [
+        {
+          name: "John Vincent Villarin",
+          tasks: [
+            "Checked the grammar and spelling of the system.",
+            "Added new prisoners to test.",
+            "Changed the Administrator password.",
+            "Reviewed the system's error messages for clarity and helpfulness.",
+            "Assessed the accessibility features of the system for users with disabilities.",
+            "Documented the issues."
+          ],
+        },
+        {
+          name: "Joezel Bruzo",
+          tasks: [
+            "Edited an existing inmate.",
+            "Explored the Prison Management System.",
+            "Tried adding a new visitor.",
+            "Added a new incident report for an inmate.",
+            "Searched and filtered inmates by crime types.",
+            "Find help documentation.",
+            "Log in and check if the dashboard clearly shows the current prison population.",
+          ],
+        },
+        {
+          name: "Jhay Adven Sarte",
+          tasks: [
+            "Add a new inmate and ensure the required fields are clearly marked.",
+            "Edit inmate details (e.g., name or offense) and verify if feedback confirms success.",
+            "Move an inmate to a different cell and confirm whether conflicts (overcapacity, security) are prevented.",
+            "Attempt to delete an inmate and assess if there's a confirmation or undo option.",
+            "Browse inmate profiles—check for consistency in layout and label clarity.",
+            "Use a dropdown or search to assign inmates to cells—test if the system supports recognition over recall.",
+          ],
+        },
+        {
+          name: "Cristian Jay Sales",
+          tasks: [
+            "Log a new visitor appointment for an inmate and check validation of input.",
+            "Test filtering visitor logs by inmate name and date range.",
+            "File a new incident report involving an inmate—check if form structure matches real-world incident forms.",
+            "Attempt to submit a report with missing required fields—check if errors are caught early and clearly explained.",
+            "Edit a previously submitted report—look for visibility of change history or audit trail.",
+            "Check consistency in how incident types (e.g., violence, contraband) are labeled and categorized.",
+            "Evaluate system messages for submitting or deleting reports—are they helpful and consistent?",
+            "Look for help documentation or tooltips in the incident module.",
+          ],
+        },
+        {
+          name: "Alec Campana",
+          tasks: [
+            "Check if inmate profile updates reflect immediately in the dashboard.",
+            "Tried adding a new visitor.",
+            "Evaluate the use of icons and labels in the visitor section (e.g., “Add,” “Edit,” “Delete”) for consistency.",
+            "Tested the system's functionality.",
+            "Evaluated the effectiveness of the system's notifications.",
+            "Checked if there is an automatic calculation for the duration of the sentence.",
+            "Evaluated the UI/UX design.",
+            "Recommended solutions for each issue.",
+            "Tried adding a male prisoner to a female cell/block.",
+          ],
+        },
+      ];
+      
+  
+    return (
 
-      <section id="Decide" className="min-h-screen flex flex-col items-center justify-start relative pt-30 pb-10">
+      <section id="Tasks" className="min-h-screen flex flex-col items-center justify-start relative pt-30 pb-10">
 
         <div className="text-center z-10 px-4">
 
@@ -12,109 +77,63 @@ export const Tasks = () => {
 
           </h1>
 
-            <p className="text-gray-400 text-lg mb-8 max-w-prose mx-auto text-justify leading-relaxed">
-                
-                We performed these various tasks during the Heuristic Evaluation of the Prison Management System
-            
-            </p>
+          <p className="text-gray-400 text-lg mb-8 max-w-prose mx-auto text-justify leading-relaxed">
+
+            We performed these various tasks during the Heuristic Evaluation of the Prison Management System
+
+          </p>
 
         </div>
   
-        <div className="flex flex-col gap-6 px-4 max-w-3xl w-full mt-10">
+        <div className="overflow-x-auto w-[80%] px-4">
 
-          {[
+          <table className="min-w-full text-sm text-white bg-white/5 backdrop-blur-md rounded-xl overflow-hidden">
 
-            { title: "D", label: "Determine goals", desc: [
+            <thead className="bg-pink-500/10 text-pink-300 text-xs">
 
-                "To identify usability issues that affect task efficiency, data accuracy, and overall user satisfaction, especially in managing prisoner records, visitation, and cell assignments.",
-                "To assess how satisfied users are with the system, and how much they trust its data accuracy, especially in sensitive areas like prisoner records and cell assignments."
+              <tr>
 
-            ] },
+                <th className="px-4 py-3 text-left">Evaluator</th>
+                <th className="px-4 py-3 text-left">Task Description</th>
 
-            { title: "E", label: "Explore the questions", desc: [
-                
-                "To evaluate usability, we ask targeted questions about the system’s design, behavior, and user interaction.",
-                "Can users easily navigate the system and complete key tasks without confusion?",
-                "Are there any common errors or issues that users encounter frequently?",
-                "Does the system provide adequate feedback and guidance when errors occur?",
-                "Are the design elements and terminology used in the system intuitive for the users?",
-                "How efficient are users in completing tasks, and are there any bottlenecks or delays?"
+              </tr>
 
-            ] },
+            </thead>
 
-            { title: "C", label: "Choose evaluation methods", desc: [
-                
-                "We will use heuristic evaluation based on Nielsen’s 10 Usability Heuristics, supported by direct user observation and system walkthroughs."
-            
-            ] },
+            <tbody className="divide-y divide-white/10">
 
-            { title: "I", label: "Identify practical issues", desc: [
-                
-                "Evaluation will be conducted using a staging version of the system. Time is limited to one month and one week. Test participants will consist of us, the students, acting as evaluators. No changes will be deployed to live data."
-            
-            ] },
+              {evaluatorsWithTasks.map((evaluator) => (
 
-            { title: "D", label: "Decide how to deal with ethical issues", desc: [
-                
-                "Since the evaluation will be conducted by student evaluators on a staging version of the system, no real user data will be involved. All testing will be done in a controlled environment with mock data. Participants (students) are aware of their roles, and no sensitive or private information will be collected or shared. All activities follow ethical guidelines set by the course/project."
-            
-            ] },
+                <tr key={evaluator.name}>
 
-            { title: "E", label: "Evaluate, analyze, interpret, and present data", desc: [
-                
-                "For Evaluation, we used the Nielsen 10 Usability Heuristics Workbook. A summary report will be created highlighting key usability issues and recommended improvements, supported with screenshots and descriptions for clarity."
-            
-            ] },
-          
-        ].map((step, index) => (
-        
-            <div key={index} className="bg-white/5 backdrop-blur p-6 rounded-2xl border border-white/10 shadow-md text-white">
-                
-                <h2 className="text-2xl font-bold text-pink-400">{step.title} — {step.label}</h2>
+                  <td className="px-4 py-3">{evaluator.name}</td>
+                  <td className="px-4 py-3">
 
-                {step.label === "Explore the questions" ? (
-                
-                <div className="mt-2 text-gray-300 text-sm leading-relaxed space-y-2 pl-6">
+                    {evaluator.tasks.map((task, index) => (
 
-                    <ul className="list-disc">
+                      <div key={index}>
 
-                    <li>{step.desc[0]}</li>
+                        {`${index + 1}. ${task}`}
 
-                    </ul>
-
-                    <ol className="list-decimal space-y-2">
-
-                    {step.desc.slice(1).map((item, idx) => (
-
-                        <li key={idx}>{item}</li>
+                      </div>
 
                     ))}
 
-                    </ol>
+                  </td>
 
-                </div>
+                </tr>
 
-                ) : (
+              ))}
 
-                <ul className="mt-2 text-gray-300 text-sm leading-relaxed list-disc pl-6 space-y-2">
+            </tbody>
 
-                    {step.desc.map((item, idx) => (
-
-                    <li key={idx}>{item}</li>
-
-                    ))}
-
-                </ul>
-
-                )}
-
-            </div>
-
-            ))}
+          </table>
 
         </div>
 
       </section>
+
     );
+
   };
   

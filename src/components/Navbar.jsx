@@ -39,8 +39,6 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
 
           <Link to="/tasks" className="text-gray-300 hover:text-white transition-colors">List of Tasks</Link>
 
-          <Link to="/improvements" className="text-gray-300 hover:text-white transition-colors">Proposed Improvements</Link>
-
           </div>
 
         </div>

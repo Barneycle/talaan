@@ -44,8 +44,9 @@ export const Evaluation = () => {
     {
 
       heuristic: "2. Match Between System and the Real World",
-      issue: ["Typographical error: 'Vistor' and 'Adminstrator' instead of 'Visitor' and 'Administrator' in the sidebar and front page. Undermines credibility.", 
-
+      issue: ["Typographical error: 'Vistor' and 'Adminstrator' instead of 'Visitor' and 'Administrator' in the sidebar and front page. Undermines credibility.",
+              "Users should be able to generate a daily report showing inmate movements (transfers, releases).",
+              
       ],
       recommendation: ["Correct the spelling and conduct proofreading for other possible typos in the UI.",
 
@@ -61,8 +62,10 @@ export const Evaluation = () => {
 
       ],
       recommendation: ["Add a confirmation dialog (e.g., “Are you sure you want to save changes?”) before committing updates or new entries, to give users a chance to review their action. Add clearly visible cancel/back buttons and confirmation before leaving forms.",
-
-        ],
+                        "Implement Undo/Redo functionality or at least allow users to review changes before submission.",
+                        "Add an option to change language/s.",
+      
+                      ],
       images: [control],
 
     },
@@ -89,7 +92,8 @@ export const Evaluation = () => {
       ],
       recommendation: ["Separate error messages for username and password input validation.",
                        "Implement validation rules that prevent a prisoner from being assigned to a cell block that doesn’t match their sex (e.g., if 'Sex: Male' is selected, only male cell blocks should be available for selection). Display error messages or warnings when such mismatches occur, prompting the user to correct the selection. Lock cell block options based on the selected sex of the prisoner, so only the appropriate choices are available. Add a duplicate-check mechanism when entering a prisoner name. If a matching name already exists, show a clear warning such as: “A prisoner with this name already exists. Please confirm if this is a new entry or check existing records.” Allow users to proceed only after acknowledging the warning, or suggest linking to the existing prisoner record if applicable.",
-      ],
+                        "Add a warning message that alerts users when they try to enter duplicate data, such as: 'This inmate already exists in the system. Do you want to continue?'",
+                      ],
       images: [error1, error2],
 
     },
@@ -99,12 +103,13 @@ export const Evaluation = () => {
       heuristic: "6. Recognition Rather than Recall",
       issue: ["Labels and field names are generally visible. No need to memorize previous data.",
               "The system does not automatically calculate the sentence end date after the user enters the sentence length. Instead, the user has to manually input both the start and end dates, which requires them to recall and enter the correct information. This increases the cognitive load on users and can lead to mistakes, such as entering inconsistent or incorrect dates.",
-
-      ],
+              "Ensure all input fields have clear and visible labels so users can easily understand what information is required, reducing confusion and preventing data entry errors.",
+      
+            ],
       recommendation: ["Continue making labels clear and consistent. Consider tooltips for new users.",
                        "Automatically calculate the sentence end date based on the sentence start date and duration entered by the user. Provide the user with the ability to modify the start date, but lock the end date after it’s auto-calculated. Ensure the system validates that the end date logically aligns with the start date and duration.",
-
-      ],
+                      
+                      ],
       images: [recog1, recog2],
 
     },
@@ -116,11 +121,11 @@ export const Evaluation = () => {
               "The system requires users to manually input the prisoner code for each new prisoner. This can be time-consuming and prone to errors, especially when dealing with a large number of prisoners. There is no option for the system to auto-generate the prisoner code based on a predefined pattern, which slows down data entry.",
               "The system lacks shortcuts, templates, or auto-fill features for repetitive tasks, such as assigning the same cell block, sentence type, or other details for multiple prisoners. This forces users to enter the same information repeatedly, which decreases efficiency for experienced users.",
 
-      ],
+            ],
       recommendation: ["Add accelerators (e.g., Ctrl+S), templates, and allow dashboard module rearrangement.",
-                        "Implement an auto-generation feature for the prisoner code, where the system generates the code based on a sequential or logical pattern. Provide the option to save common entries as templates (e.g., common cell blocks or sentence details), allowing users to quickly apply them to new records. Introduce shortcuts or an advanced mode for expert users, enabling them to complete repetitive tasks more efficiently."
-
-      ],
+                        "Implement an auto-generation feature for the prisoner code, where the system generates the code based on a sequential or logical pattern. Provide the option to save common entries as templates (e.g., common cell blocks or sentence details), allowing users to quickly apply them to new records. Introduce shortcuts or an advanced mode for expert users, enabling them to complete repetitive tasks more efficiently.",
+                      
+                      ],
       images: [flexi1, flexi2],
 
     },
@@ -130,8 +135,10 @@ export const Evaluation = () => {
       heuristic: "8. Aesthetic and Minimalist Design",
       issue: ["The system's design adheres to minimalist principles, showing only relevant information and tools needed to perform the current task. The interface avoids unnecessary elements and keeps the focus on the essential features for the user. Buttons, icons, and text fields are appropriately spaced and organized, allowing the user to quickly understand and navigate the system.",
       ],
-      recommendation: ["None needed. The system already adheres to minimalist design principles, providing a visually clean interface that helps users focus on important tasks without distractions.",
-      ],
+      recommendation: ["The design can be updated. A modern and sleek look could do wonders. Make the sidebar hidden when the home page or the dashboard is selected, also add a navbar. A toggleable navbar depending on screen size and platform.",
+                        "Font style can be changed as well into a more sleek and modern look but with a bit of elegance like Roboto or Lato.",
+                      
+                      ],
       images: [],
 
     },
@@ -144,7 +151,8 @@ export const Evaluation = () => {
       recommendation: ["Separate the error message to indicate which part of the login credentials is incorrect. For example: If the username is incorrect: 'The username you entered does not exist. Please check and try again.' If the password is incorrect: 'The password you entered is incorrect. Please try again or reset your password.' ",
                         "After a failed login attempt, the system should clear the password field so the user can try entering the correct password without manually deleting the previous entry.",
                         "For users who are unsure whether the username or password is correct, the system should offer a password recovery link or username reminder option that users can easily access. The system should not show a generic error such as 'Incorrect username or password' as it doesn't help users resolve the issue efficiently.",
-      ],
+                        "Help users fix mistakes easily by showing suggestions or automatically correcting small errors when possible.",
+                      ],
       images: [hurd1],
 
     },
@@ -160,7 +168,8 @@ export const Evaluation = () => {
                         "Add a search bar within the help section, so users can quickly find answers to specific questions (e.g., 'how to add a visitor', 'how to assign a cell block'). This can help users save time by quickly locating the relevant documentation. ",
                         "Include a contact support option within the system (e.g., an email address or live chat feature) that users can reach out to if they encounter issues not covered in the help documentation. ",
                         "When an error occurs (e.g., an invalid prisoner name or missing information), the system should offer a link to relevant help topics that explain how to fix the error. For example, if a user attempts to assign a prisoner to the wrong cell block, the error message could include: 'For more information, refer to the Assigning Prisoners to Cell Blocks section of the help documentation.'",
-      ],
+                        "There should be an option to archive current and old inmate records. Not just inmates but guards and all other staffs as well.",
+                      ],
       images: [],
 
     },
@@ -206,11 +215,9 @@ export const Evaluation = () => {
         
       </div>
 
-      <div className="w-[80%] mx-auto h-[0.5px] bg-gradient-to-r from-rose-500 to-pink-400 my-8 rounded-full" />
-
       <div className="overflow-x-auto w-[80%] px-4">
 
-        <table className="min-w-full border border-white/10 text-sm text-white bg-white/5 backdrop-blur-md rounded-xl overflow-hidden">
+<table className="min-w-full text-sm text-white bg-white/5 backdrop-blur-md rounded-xl overflow-hidden">
 
           <thead className="bg-pink-500/10 text-pink-300 uppercase text-xs">
             
@@ -235,7 +242,7 @@ export const Evaluation = () => {
 
                   <td colSpan="4" className="px-4 py-3">
 
-                    <h3 className="text-lg font-semibold text-pink-300 mb-2">Heuristic Evaluation Workbook: </h3>
+                    <h3 className="text-2xl font-semibold text-pink-300 mb-2">Heuristic Evaluation Workbook: </h3>
 
                     <div className="flex flex-wrap gap-4">
 
@@ -243,7 +250,7 @@ export const Evaluation = () => {
 
                         <div key={pdfIdx} className="flex items-center gap-2">
 
-                          <span className="text-pink-300 cursor-pointer hover:underline" onClick={() => setSelectedPDF(pdf.path)} >
+                          <span className="text-pink-300 cursor-pointer hover:underline text-lg p-5" onClick={() => setSelectedPDF(pdf.path)} >
 
                             {pdf.name}
 
