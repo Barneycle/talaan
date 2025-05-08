@@ -14,7 +14,7 @@ function AnimatedRoutes() {
         
       <Routes location={location} key={location.pathname}>
 
-        <Route path="/" element={ <div> <Home /> </div>}/>
+        <Route path="/hci2ProjectEvaluation/" element={ <div> <Home /> </div>}/>
         <Route path="/decide" element={ <div> <Decide /> </div>}/>
         <Route path="/evaluation" element={ <div> <Evaluation /> </div>}/>
         <Route path="/tasks" element={ <div> <Tasks /> </div>}/>

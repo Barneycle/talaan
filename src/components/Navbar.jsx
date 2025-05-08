@@ -31,7 +31,7 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
 
           <div className="hidden md:flex items-center space-x-8">
 
-          <Link to="/" className="text-gray-300 hover:text-white transition-colors">Home</Link>
+          <Link to="/hci2ProjectEvaluation/" className="text-gray-300 hover:text-white transition-colors">Home</Link>
 
           <Link to="/decide" className="text-gray-300 hover:text-white transition-colors">DECIDE Framework</Link>
 

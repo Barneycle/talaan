@@ -5,7 +5,10 @@ import { BrowserRouter } from "react-router-dom";
 import './index.css';
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <BrowserRouter basename="/hci2ProjectEvaluation">
-    <App />
-  </BrowserRouter>
+
+<BrowserRouter>
+  <App />
+</BrowserRouter>
+
+
 );
