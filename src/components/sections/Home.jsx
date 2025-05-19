@@ -14,9 +14,19 @@ import Campana from "../../assets/Campana.png";
 export const Home = () => {
 
   const [selectedImage, setSelectedImage] = useState(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-  const openImage = (imgSrc) => setSelectedImage(imgSrc);
-  const closeImage = () => setSelectedImage(null);
+  const images = [pms1, pms2, pms3];
+
+  const openImage = (imgSrc, index) => {
+    setSelectedImage(imgSrc);
+    setCurrentIndex(index);
+    document.body.classList.add('hide-navbar');
+  };
+  const closeImage = () => {
+    setSelectedImage(null);
+    document.body.classList.remove('hide-navbar');
+  };
 
   return ( 
   
@@ -42,7 +52,7 @@ export const Home = () => {
 
             {[pms1, pms2, pms3].map((src, i) => (
 
-            <img key={i} src={src} alt={`Prison ${i + 1}`} onClick={() => openImage(src)} className="w-[800px] h-auto rounded-lg shadow-lg cursor-pointer transition-transform duration-200 hover:scale-105" /> ))}
+            <img key={i} src={src} alt={`Prison ${i + 1}`} onClick={() => openImage(src, i)} className="w-[800px] h-auto rounded-lg shadow-lg cursor-pointer transition-transform duration-200 hover:scale-105" /> ))}
 
           </div>
 
@@ -50,7 +60,31 @@ export const Home = () => {
           
   <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 p-4 overflow-auto" onClick={closeImage} >
 
-    <img src={selectedImage} alt="Enlarged" className="max-w-full max-h-full rounded-lg shadow-2xl" />
+      <button
+        onClick={(e) => { e.stopPropagation(); setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1)); }}
+        className="absolute top-1/2 left-1 transform -translate-y-1/2 bg-transparent text-white opacity-70 p-1 text-6xl transition duration-300 ease-in-out hover:opacity-100 hover:scale-110 active:scale-90 z-50"
+        aria-label="Previous Image"
+      >
+        ❮
+      </button>
+
+    <img
+      src={images[currentIndex]}
+      alt={`Prison ${currentIndex + 1}`}
+      className="max-w-full max-h-full rounded-lg shadow-2xl cursor-pointer"
+      onClick={(e) => {
+        e.stopPropagation();
+        closeImage();
+      }}
+    />
+
+      <button
+        onClick={(e) => { e.stopPropagation(); setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1)); }}
+        className="absolute top-1/2 right-1 transform -translate-y-1/2 bg-transparent text-white opacity-70 p-1 text-6xl transition duration-300 ease-in-out hover:opacity-100 hover:scale-110 active:scale-90 z-50"
+        aria-label="Next Image"
+      >
+        ❯
+      </button>
 
   </div>)}
 

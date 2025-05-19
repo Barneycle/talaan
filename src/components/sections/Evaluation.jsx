@@ -119,12 +119,10 @@ export const Evaluation = () => {
       heuristic: "7. Flexibility and Efficiency of Use",
       issue: ["No keyboard shortcuts or ability to personalize dashboard.",
               "The system requires users to manually input the prisoner code for each new prisoner. This can be time-consuming and prone to errors, especially when dealing with a large number of prisoners. There is no option for the system to auto-generate the prisoner code based on a predefined pattern, which slows down data entry.",
-              "The system lacks shortcuts, templates, or auto-fill features for repetitive tasks, such as assigning the same cell block, sentence type, or other details for multiple prisoners. This forces users to enter the same information repeatedly, which decreases efficiency for experienced users.",
-
+              "The system lacks shortcuts, templates, or auto-fill features for repetitive tasks, such as assigning the same cell block, sentence type, or other details for multiple prisoners. This forces users to enter the same information repeatedly, decreases efficiency for experienced users.",
             ],
       recommendation: ["Add accelerators (e.g., Ctrl+S), templates, and allow dashboard module rearrangement.",
                         "Implement an auto-generation feature for the prisoner code, where the system generates the code based on a sequential or logical pattern. Provide the option to save common entries as templates (e.g., common cell blocks or sentence details), allowing users to quickly apply them to new records. Introduce shortcuts or an advanced mode for expert users, enabling them to complete repetitive tasks more efficiently.",
-                      
                       ],
       images: [flexi1, flexi2],
 
@@ -137,7 +135,6 @@ export const Evaluation = () => {
       ],
       recommendation: ["The design can be updated. A modern and sleek look could do wonders. Make the sidebar hidden when the home page or the dashboard is selected, also add a navbar. A toggleable navbar depending on screen size and platform.",
                         "Font style can be changed as well into a more sleek and modern look but with a bit of elegance like Roboto or Lato.",
-                      
                       ],
       images: [],
 
@@ -210,155 +207,164 @@ export const Evaluation = () => {
 <p className="text-gray-400 text-sm md:text-base lg:text-lg mb-8 max-w-prose mx-auto text-justify leading-relaxed">
 
           This heuristic evaluation was conducted by a group of student evaluators to assess the usability of the prison management system prototype. Using Nielsen’s 10 Usability Heuristics, the team identified interface issues and areas for improvement to enhance user experience. The evaluation focused on helping the system better meet the needs of its users: prison staff and system administrators.
-        
+
         </p>
-        
+
       </div>
 
-<div className="overflow-x-auto w-full max-w-full px-4">
+      <div className="w-full max-w-4xl px-4 grid grid-cols-1 gap-8">
 
-<table className="w-full text-base sm:text-lg md:text-xl text-white bg-white/5 backdrop-blur-md rounded-xl overflow-hidden">
+        {rows.map((row, idx) => (
 
-<thead className="bg-pink-500/10 text-pink-300 uppercase">
-            
-            <tr>
+          row.isPdfRow ? (
 
-              <th className="px-6 sm:px-8 md:px-10 py-4 text-left text-base sm:text-lg md:text-xl">Heuristic</th>
-              <th className="px-6 sm:px-8 md:px-10 py-4 text-left text-base sm:text-lg md:text-xl">Issue Description</th>
-              <th className="px-6 sm:px-8 md:px-10 py-4 text-left text-base sm:text-lg md:text-xl">Recommendation</th>
-              <th className="px-6 sm:px-8 md:px-10 py-4 text-left text-base sm:text-lg md:text-xl">Screenshot</th>
-            
-            </tr>
+            <div key="pdf-row" className="col-span-full bg-pink-900 bg-opacity-20 rounded-lg p-8">
 
-          </thead>
+              <h3 className="text-3xl font-semibold text-pink-300 mb-6">Heuristic Evaluation Workbook:</h3>
 
-          <tbody className="divide-y divide-white/10">
+              <div className="flex flex-wrap gap-6">
 
-            {rows.map((row, idx) => (
+                {row.pdfFiles.map((pdf, pdfIdx) => (
 
-              row.isPdfRow ? (
-                
-                <tr key="pdf-row">
+                  <div key={pdfIdx} className="flex items-center gap-4">
 
-                  <td colSpan="4" className="px-4 py-3">
+                    <span className="text-pink-300 cursor-pointer hover:underline text-lg p-6" onClick={() => setSelectedPDF(pdf.path)}>
 
-                    <h3 className="text-2xl font-semibold text-pink-300 mb-2">Heuristic Evaluation Workbook: </h3>
+                      {pdf.name}
 
-                    <div className="flex flex-wrap gap-4">
+                    </span>
 
-                      {row.pdfFiles.map((pdf, pdfIdx) => (
+                  </div>
 
-                        <div key={pdfIdx} className="flex items-center gap-2">
+                ))}
 
-<span className="text-pink-300 cursor-pointer hover:underline text-sm md:text-base lg:text-lg p-5" onClick={() => setSelectedPDF(pdf.path)} >
+              </div>
 
-                            {pdf.name}
+            </div>
 
-                          </span>
+          ) : (
 
-                        </div>
+            <div key={idx} className="bg-white/5 backdrop-blur-md rounded-xl p-8 shadow-lg flex flex-col">
 
-                      ))}
+              <h3 className="text-2xl font-semibold text-pink-300 mb-6">{row.heuristic}</h3>
 
-                    </div>
+              <div className="mb-6">
 
-                  </td>
+                <h4 className="font-semibold text-white mb-3 text-lg">Issue Description</h4>
 
-                </tr>
+                {Array.isArray(row.issue) ? (
 
-              ) : (
+                  <ul className="list-disc list-inside space-y-2 text-gray-300 text-lg">
 
-                <tr key={idx}>
-                  
-<td className="px-6 sm:px-8 md:px-10 py-4 align-top">{row.heuristic}</td>
-                  
-<td className="px-6 sm:px-8 md:px-10 py-4 align-top">
-                    
-                    {Array.isArray(row.issue) ? ( 
-                      
-                      <ul className="list-disc list-inside space-y-1"> 
-                        
-                        {row.issue.map((item, i) => ( 
+                    {row.issue.map((item, i) => (
 
-                          <li key={i}>{item}</li> 
+                      <li key={i}>{item}</li>
 
-                        ))}
+                    ))}
 
-                      </ul>
+                  </ul>
 
-                    ) : ( row.issue )}
+                ) : (
 
-                  </td>
+                  <p className="text-gray-300 text-lg">{row.issue}</p>
 
-              <td className="px-6 sm:px-8 md:px-10 py-4 align-top">  
+                )}
+
+              </div>
+
+              <div className="mb-6">
+
+                <h4 className="font-semibold text-white mb-3 text-lg">Recommendation</h4>
+
                 {Array.isArray(row.recommendation) ? (
-                  <ul className="list-disc list-inside space-y-1">
-                    {row.recommendation.map((item, i) => ( <li key={i}>{item}</li> ))}
-                  </ul> ) : ( row.recommendation )}
-              </td>
-              <td className="px-6 sm:px-8 md:px-10 py-4 align-top">
-                <div className="flex flex-wrap gap-2">
-                  {row.images.map((imgSrc, imgIdx) => (
-                    <div key={imgIdx} className="relative">
-                      <img src={imgSrc} alt={`Screenshot for ${row.heuristic} #${imgIdx + 1}`} onClick={() => openImage(imgSrc)} className="w-20 sm:w-32 md:w-40 max-w-full h-auto rounded-md shadow-md cursor-pointer hover:scale-105 transition-transform" />
-                    </div> 
-                  ))}
-                </div>
-              </td>
 
-                </tr>
+                  <ul className="list-disc list-inside space-y-2 text-gray-300 text-lg">
 
-              ) ))}
+                    {row.recommendation.map((item, i) => (
 
-          </tbody>
+                      <li key={i}>{item}</li>
 
-        </table>
+                    ))}
+
+                  </ul>
+
+                ) : (
+
+                  <p className="text-gray-300 text-lg">{row.recommendation}</p>
+
+                )}
+
+              </div>
+
+              <div className="flex flex-wrap gap-4">
+
+                {row.images.map((imgSrc, imgIdx) => (
+
+                  <div key={imgIdx} className="relative">
+
+                    <img src={imgSrc} alt={`Screenshot for ${row.heuristic} #${imgIdx + 1}`} onClick={() => openImage(imgSrc)} className="w-28 sm:w-40 md:w-48 max-w-full h-auto rounded-md shadow-md cursor-pointer hover:scale-105 transition-transform" />
+
+                  </div>
+
+                ))}
+
+              </div>
+
+            </div>
+
+          )
+
+        ))}
 
       </div>
 
       {selectedImage && (
 
-        <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 p-4" onClick={closeImage} >
+        <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 p-6" onClick={closeImage} >
+
           <div className="max-w-full max-h-full overflow-auto rounded-lg shadow-2xl">
+
             <img src={selectedImage} alt="Enlarged" className="max-w-full max-h-full rounded-lg" />
+
           </div>
+
         </div>
 
       )}
 
-{selectedPDF && (
+      {selectedPDF && (
 
-  <div className="fixed inset-0 bg-black bg-opacity-90 flex flex-col items-center justify-center z-50 p-4 overflow-auto">
-    
-    <div className="w-full h-full bg-gray-900 rounded-lg shadow-xl flex flex-col">
+        <div className="fixed inset-0 bg-black bg-opacity-90 flex flex-col items-center justify-center z-50 p-6 overflow-auto">
 
-      <div className="flex justify-between items-center p-4 border-b border-gray-700">
+          <div className="w-full h-full bg-gray-900 rounded-lg shadow-xl flex flex-col">
 
-        <h3 className="text-lg font-medium text-white">PDF Preview</h3>
+            <div className="flex justify-between items-center p-6 border-b border-gray-700">
 
-        <button onClick={() => setSelectedPDF(null)} className="text-gray-300 hover:text-white p-2 rounded-full hover:bg-gray-700 transition-colors">
+              <h3 className="text-xl font-medium text-white">PDF Preview</h3>
 
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <button onClick={() => setSelectedPDF(null)} className="text-gray-300 hover:text-white p-3 rounded-full hover:bg-gray-700 transition-colors">
 
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 
-          </svg>
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
 
-        </button>
+                </svg>
 
-      </div>
+              </button>
 
-      <div className="flex-1 overflow-hidden">
+            </div>
 
-        <iframe src={`${selectedPDF}#view=fitH`} className="w-full h-full" title="PDF Preview" frameBorder="0" />
+            <div className="flex-1 overflow-hidden">
 
-      </div>
+              <iframe src={`${selectedPDF}#view=fitH`} className="w-full h-full" title="PDF Preview" frameBorder="0" />
 
-    </div>
-    
-  </div>
+            </div>
 
-)}
+          </div>
+
+        </div>
+
+      )}
 
     </section>
 
