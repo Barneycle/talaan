@@ -11,7 +11,7 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
 
   return (
 
-    <nav className="fixed top-0 w-full z-40 bg-[rgba(0,0,0,0.7)] backdrop-blur-lg border-b border-white/10 shadow-lg">
+<nav className="fixed top-0 w-full z-40 bg-blue-900 backdrop-blur-lg border-b border-white/10 shadow-lg">
 
       <div className="max-w-7xl mx-auto px-4">
 
@@ -19,7 +19,7 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
 
           <Link to="/" className="font-mono text-xl font-bold text-white">
 
-            {" "} Group<span className="text-pink-400"> Seven</span> {" "}
+            {" "} Talaan<span className="text-blue-300">+</span> {" "}
 
           </Link>
 
@@ -31,13 +31,17 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
 
           <div className="hidden md:flex items-center space-x-8">
 
-          <Link to="/" className="text-gray-300 hover:text-white transition-colors">Home</Link>
+          <Link to="/home" className="text-gray-300 hover:text-white transition-colors">Home</Link>
 
-          <Link to="/decide" className="text-gray-300 hover:text-white transition-colors">DECIDE Framework</Link>
+          <Link to="/admin" className="text-gray-300 hover:text-white transition-colors">Admin</Link>
 
-          <Link to="/evaluation" className="text-gray-300 hover:text-white transition-colors">Evaluation Result</Link>
+          <Link to="/organizer" className="text-gray-300 hover:text-white transition-colors">Organizer</Link>
 
-          <Link to="/tasks" className="text-gray-300 hover:text-white transition-colors">List of Tasks</Link>
+          <Link to="/participants" className="text-gray-300 hover:text-white transition-colors">Participants</Link>
+
+          <Link to="/" className="text-gray-300 hover:text-blue-300 transition-colors font-semibold border border-white rounded px-3 py-1 hover:bg-white hover:text-blue-900 transition-colors">
+            Log In
+          </Link>
 
           </div>
 

@@ -19,21 +19,21 @@ export const MobileMenu = ({ menuOpen, setMenuOpen }) => {
       
       </Link>
 
-<Link to="/decide" onClick={() => setMenuOpen(false)} className={`text-lg md:text-xl lg:text-2xl font-semibold text-white my-4 transform transition-transform duration-300 ${ menuOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5" } `}>
+<Link to="/admin" onClick={() => setMenuOpen(false)} className={`text-lg md:text-xl lg:text-2xl font-semibold text-white my-4 transform transition-transform duration-300 ${ menuOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5" } `}>
         
-        DECIDE Framework
+        Admin
 
       </Link>
 
-<Link to="/evaluation" onClick={() => setMenuOpen(false)} className={`text-lg md:text-xl lg:text-2xl font-semibold text-white my-4 transform transition-transform duration-300 ${ menuOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5" } `}>
+<Link to="/organizer" onClick={() => setMenuOpen(false)} className={`text-lg md:text-xl lg:text-2xl font-semibold text-white my-4 transform transition-transform duration-300 ${ menuOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5" } `}>
        
-        Evaluation Result
+        Organizer
         
       </Link>
 
-<Link to="/tasks" onClick={() => setMenuOpen(false)} className={`text-lg md:text-xl lg:text-2xl font-semibold text-white my-4 transform transition-transform duration-300 ${ menuOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5" } `}>
+<Link to="/participants" onClick={() => setMenuOpen(false)} className={`text-lg md:text-xl lg:text-2xl font-semibold text-white my-4 transform transition-transform duration-300 ${ menuOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5" } `}>
 
-        List of Tasks
+        Participants
 
       </Link>
 

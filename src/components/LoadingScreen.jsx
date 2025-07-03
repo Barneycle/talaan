@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 export const LoadingScreen = ({ onComplete }) => {
 
   const [text, setText] = useState("");
-  const fullText = "<HCI2 Final Project />";
+  const fullText = "Talaan+";
 
   useEffect(() => {
 
@@ -34,11 +34,11 @@ export const LoadingScreen = ({ onComplete }) => {
 
   return (
 
-    <div className="fixed inset-0 z-50 bg-black text-gray-100 flex flex-col items-center justify-center">
+    <div className="fixed inset-0 z-50 bg-zinc-200 text-blue-900 flex flex-col items-center justify-center">
 
       <div className="mb-4 font-mono font-bold text-xl sm:text-2xl md:text-3xl lg:text-4xl">
 
-        {text} <span className="animate-blink ml-1"> | </span>
+        {text}<span className="animate-blink ml-1">|</span>
 
       </div>
 
