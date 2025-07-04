@@ -597,33 +597,59 @@ export const Organizer = () => {
                     />
                   )}
                   {q.type === 'linear-scale' && (
-                    <div className="flex space-x-2">
-                      <select
-                        className="border border-gray-300 rounded px-3 py-2"
-                        value={q.linearScaleMin || '0'}
-                        onChange={(e) => {
-                          const newQuestions = [...surveyQuestions];
-                          newQuestions[idx].linearScaleMin = e.target.value;
-                          setSurveyQuestions(newQuestions);
-                        }}
-                      >
-                        <option value="0">0</option>
-                        <option value="1">1</option>
-                      </select>
-                      <select
-                        className="border border-gray-300 rounded px-3 py-2"
-                        value={q.linearScaleMax || '5'}
-                        onChange={(e) => {
-                          const newQuestions = [...surveyQuestions];
-                          newQuestions[idx].linearScaleMax = e.target.value;
-                          setSurveyQuestions(newQuestions);
-                        }}
-                      >
-                        {[...Array(9)].map((_, i) => {
-                          const val = i + 2;
-                          return <option key={val} value={val}>{val}</option>;
-                        })}
-                      </select>
+                    <div className="flex space-x-4 items-center">
+                      <div className="flex items-center space-x-2">
+                        <input
+                          type="text"
+                          placeholder="Label"
+                          className="border border-gray-300 rounded px-3 py-2 w-32"
+                          value={q.linearScaleMinLabel || ''}
+                          onChange={(e) => {
+                            const newQuestions = [...surveyQuestions];
+                            newQuestions[idx].linearScaleMinLabel = e.target.value;
+                            setSurveyQuestions(newQuestions);
+                          }}
+                        />
+                        <select
+                          className="border border-gray-300 rounded px-3 py-2"
+                          value={q.linearScaleMin || '0'}
+                          onChange={(e) => {
+                            const newQuestions = [...surveyQuestions];
+                            newQuestions[idx].linearScaleMin = e.target.value;
+                            setSurveyQuestions(newQuestions);
+                          }}
+                        >
+                          <option value="0">0</option>
+                          <option value="1">1</option>
+                        </select>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <input
+                          type="text"
+                          placeholder="Label"
+                          className="border border-gray-300 rounded px-3 py-2 w-32"
+                          value={q.linearScaleMaxLabel || ''}
+                          onChange={(e) => {
+                            const newQuestions = [...surveyQuestions];
+                            newQuestions[idx].linearScaleMaxLabel = e.target.value;
+                            setSurveyQuestions(newQuestions);
+                          }}
+                        />
+                        <select
+                          className="border border-gray-300 rounded px-3 py-2"
+                          value={q.linearScaleMax || '5'}
+                          onChange={(e) => {
+                            const newQuestions = [...surveyQuestions];
+                            newQuestions[idx].linearScaleMax = e.target.value;
+                            setSurveyQuestions(newQuestions);
+                          }}
+                        >
+                          {[...Array(9)].map((_, i) => {
+                            const val = i + 2;
+                            return <option key={val} value={val}>{val}</option>;
+                          })}
+                        </select>
+                      </div>
                     </div>
                   )}
                   {q.type === 'star-rating' && (
