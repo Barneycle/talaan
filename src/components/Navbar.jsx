@@ -19,7 +19,7 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
 
           <Link to="/" className="font-mono text-xl font-bold text-white">
 
-            {" "} Talaan<span className="text-blue-300">+</span> {" "}
+            {" "} Gan<span className="text-blue-300">App</span> {" "}
 
           </Link>
 
