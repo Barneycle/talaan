@@ -89,6 +89,12 @@ export const Organizer = () => {
     department: ''
   });
 
+  // Survey creation modal state
+  const [showCreateSurveyForm, setShowCreateSurveyForm] = useState(false);
+  const [surveyQuestions, setSurveyQuestions] = useState([
+    { id: 1, question: '', type: 'text', options: [''] }
+  ]);
+
   const handleCreateEvent = () => {
     setShowCreateEventForm(true);
   };
@@ -384,6 +390,17 @@ export const Organizer = () => {
           </div>
           )}
             <ul className="max-h-96 overflow-y-auto space-y-2">
+              <li
+                key="latest-event"
+                className="p-3 border border-gray-300 rounded cursor-pointer hover:bg-gray-100"
+                onClick={() => {
+                  closeEventsList();
+                  openEventDetails(latestEvent, true);
+                }}
+              >
+                <h3 className="font-semibold text-gray-900">{latestEvent.title}</h3>
+                <p className="text-gray-700">{latestEvent.date}</p>
+              </li>
               {upcomingEvents.map(event => (
                 <li
                   key={event.id}
@@ -424,6 +441,12 @@ export const Organizer = () => {
                 Update Event
               </button>
               <button
+                className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition"
+                onClick={() => setShowCreateSurveyForm(true)}
+              >
+                Create Survey
+              </button>
+              <button
                 className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition"
                 onClick={handleRequestCancelEvent}
               >
@@ -433,6 +456,353 @@ export const Organizer = () => {
           </div>
         </div>
       )}
+
+      {/* Survey Creation Modal */}
+      {showCreateSurveyForm && (
+        <div className="fixed inset-0 bg-transparent backdrop-blur-sm flex items-center justify-center z-60">
+          <div className="bg-white bg-opacity-95 rounded-lg shadow-lg w-3/4 max-w-4xl p-6 relative text-gray-900 max-h-[90vh] overflow-y-auto">
+            <h2 className="text-2xl font-semibold mb-4">Create Survey for {selectedEvent?.title}</h2>
+            <button
+              className="absolute top-4 right-4 text-gray-600 hover:text-gray-900"
+              onClick={() => setShowCreateSurveyForm(false)}
+              aria-label="Close survey creation"
+            >
+              &times;
+            </button>
+            <form onSubmit={(e) => {
+              e.preventDefault();
+              alert('Survey submitted: ' + JSON.stringify(surveyQuestions, null, 2));
+              setShowCreateSurveyForm(false);
+              setSurveyQuestions([{ id: 1, question: '', type: 'text', options: [''] }]);
+            }}>
+              {surveyQuestions.map((q, idx) => (
+                <div key={q.id} className="mb-6 border border-gray-300 rounded p-4">
+                  <label className="block font-semibold mb-2">Question {idx + 1}</label>
+                  <input
+                    type="text"
+                    className="w-full border border-gray-300 rounded px-3 py-2 mb-2"
+                    placeholder="Enter question text"
+                    value={q.question}
+                    onChange={(e) => {
+                      const newQuestions = [...surveyQuestions];
+                      newQuestions[idx].question = e.target.value;
+                      setSurveyQuestions(newQuestions);
+                    }}
+                    required
+                  />
+                  <label className="block font-semibold mb-1">Question Type</label>
+                  <select
+                    className="mb-2 border border-gray-300 rounded px-3 py-2"
+                    value={q.type}
+                    onChange={(e) => {
+                      const newQuestions = [...surveyQuestions];
+                      newQuestions[idx].type = e.target.value;
+                      if (e.target.value === 'multiple-choice' || e.target.value === 'checkboxes' || e.target.value === 'dropdown') {
+                        if (!newQuestions[idx].options) {
+                          newQuestions[idx].options = [''];
+                        }
+                      } else if (e.target.value === 'multiple-choice-grid' || e.target.value === 'checkbox-grid') {
+                        if (!newQuestions[idx].rows) {
+                          newQuestions[idx].rows = [''];
+                        }
+                        if (!newQuestions[idx].columns) {
+                          newQuestions[idx].columns = [''];
+                        }
+                        newQuestions[idx].options = [];
+                      } else {
+                        newQuestions[idx].options = [];
+                      }
+                      setSurveyQuestions(newQuestions);
+                    }}
+                  >
+                    <option value="short-answer">Short Answer</option>
+                    <option value="paragraph">Paragraph</option>
+                    <option value="multiple-choice">Multiple Choice</option>
+                    <option value="checkboxes">Checkboxes</option>
+                    <option value="dropdown">Dropdown</option>
+                    <option value="file-upload">File Upload</option>
+                    <option value="linear-scale">Linear Scale</option>
+                    <option value="star-rating">Star Rating</option>
+                    <option value="multiple-choice-grid">Multiple Choice Grid</option>
+                    <option value="checkbox-grid">Checkbox Grid</option>
+                    <option value="date">Date</option>
+                    <option value="time">Time</option>
+                  </select>
+                  {(q.type === 'multiple-choice' || q.type === 'checkboxes' || q.type === 'dropdown') && (
+                    <div>
+                      <label className="block font-semibold mb-1">Options</label>
+                      {q.options.map((opt, optIdx) => (
+                        <div key={optIdx} className="flex items-center mb-1">
+                          <input
+                            type="text"
+                            className="flex-grow border border-gray-300 rounded px-3 py-1"
+                            placeholder={`Option ${optIdx + 1}`}
+                            value={opt}
+                            onChange={(e) => {
+                              const newQuestions = [...surveyQuestions];
+                              newQuestions[idx].options[optIdx] = e.target.value;
+                              setSurveyQuestions(newQuestions);
+                            }}
+                            required
+                          />
+                          <button
+                            type="button"
+                            className="ml-2 text-red-600 hover:text-red-800"
+                            onClick={() => {
+                              const newQuestions = [...surveyQuestions];
+                              newQuestions[idx].options.splice(optIdx, 1);
+                              if (newQuestions[idx].options.length === 0) {
+                                newQuestions[idx].options.push('');
+                              }
+                              setSurveyQuestions(newQuestions);
+                            }}
+                          >
+                            &times;
+                          </button>
+                        </div>
+                      ))}
+                      <button
+                        type="button"
+                        className="mt-1 text-blue-600 hover:underline"
+                        onClick={() => {
+                          const newQuestions = [...surveyQuestions];
+                          newQuestions[idx].options.push('');
+                          setSurveyQuestions(newQuestions);
+                        }}
+                      >
+                        + Add Option
+                      </button>
+                    </div>
+                  )}
+                  {q.type === 'short-answer' && (
+                    <input
+                      type="text"
+                      className="w-full border border-gray-300 rounded px-3 py-2"
+                      placeholder="Short answer text"
+                      disabled
+                    />
+                  )}
+                  {q.type === 'paragraph' && (
+                    <textarea
+                      className="w-full border border-gray-300 rounded px-3 py-2"
+                      placeholder="Long answer text"
+                      disabled
+                    />
+                  )}
+                  {q.type === 'file-upload' && (
+                    <input
+                      type="file"
+                      className="w-full border border-gray-300 rounded px-3 py-2"
+                      disabled
+                    />
+                  )}
+                  {q.type === 'linear-scale' && (
+                    <div className="flex space-x-2">
+                      <select
+                        className="border border-gray-300 rounded px-3 py-2"
+                        value={q.linearScaleMin || '0'}
+                        onChange={(e) => {
+                          const newQuestions = [...surveyQuestions];
+                          newQuestions[idx].linearScaleMin = e.target.value;
+                          setSurveyQuestions(newQuestions);
+                        }}
+                      >
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                      </select>
+                      <select
+                        className="border border-gray-300 rounded px-3 py-2"
+                        value={q.linearScaleMax || '5'}
+                        onChange={(e) => {
+                          const newQuestions = [...surveyQuestions];
+                          newQuestions[idx].linearScaleMax = e.target.value;
+                          setSurveyQuestions(newQuestions);
+                        }}
+                      >
+                        {[...Array(9)].map((_, i) => {
+                          const val = i + 2;
+                          return <option key={val} value={val}>{val}</option>;
+                        })}
+                      </select>
+                    </div>
+                  )}
+                  {q.type === 'star-rating' && (
+                    <div>
+                      <select
+                        className="mb-2 border border-gray-300 rounded px-3 py-2"
+                        value={q.starRatingCount || 5}
+                        onChange={(e) => {
+                          const newQuestions = [...surveyQuestions];
+                          newQuestions[idx].starRatingCount = parseInt(e.target.value, 10);
+                          setSurveyQuestions(newQuestions);
+                        }}
+                      >
+                        {[...Array(8)].map((_, i) => {
+                          const val = i + 3;
+                          return <option key={val} value={val}>{val}</option>;
+                        })}
+                      </select>
+                      <div className="flex space-x-1 justify-center">
+                        {[...Array(q.starRatingCount || 5)].map((_, i) => (
+                          <span key={i} className="text-yellow-400 flex flex-col items-center text-3xl">
+                            <span className="text-black text-sm">{i + 1}</span>
+                            &#9733;
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                  {q.type === 'date' && (
+                    <input
+                      type="date"
+                      className="w-full border border-gray-300 rounded px-3 py-2"
+                      disabled
+                    />
+                  )}
+                  {q.type === 'time' && (
+                    <input
+                      type="time"
+                      className="w-full border border-gray-300 rounded px-3 py-2"
+                      disabled
+                    />
+                  )}
+                  {/* For multiple-choice-grid and checkbox-grid, a simplified placeholder */}
+                  {(q.type === 'multiple-choice-grid' || q.type === 'checkbox-grid') && (
+                    <div className="mb-4 flex space-x-8">
+                      <div className="flex-1">
+                        <label className="block font-semibold mb-1">Rows</label>
+                        {q.rows && q.rows.map((row, rowIdx) => (
+                          <div key={rowIdx} className="flex items-center mb-1">
+                            <input
+                              type="text"
+                              className="flex-grow border border-gray-300 rounded px-3 py-1"
+                              placeholder={`Row ${rowIdx + 1}`}
+                              value={row}
+                              onChange={(e) => {
+                                const newQuestions = [...surveyQuestions];
+                                newQuestions[idx].rows[rowIdx] = e.target.value;
+                                setSurveyQuestions(newQuestions);
+                              }}
+                              required
+                            />
+                            <button
+                              type="button"
+                              className="ml-2 text-red-600 hover:text-red-800"
+                              onClick={() => {
+                                const newQuestions = [...surveyQuestions];
+                                newQuestions[idx].rows.splice(rowIdx, 1);
+                                if (newQuestions[idx].rows.length === 0) {
+                                  newQuestions[idx].rows.push('');
+                                }
+                                setSurveyQuestions(newQuestions);
+                              }}
+                            >
+                              &times;
+                            </button>
+                          </div>
+                        ))}
+                        <button
+                          type="button"
+                          className="mt-1 text-blue-600 hover:underline"
+                          onClick={() => {
+                            const newQuestions = [...surveyQuestions];
+                            if (!newQuestions[idx].rows) newQuestions[idx].rows = [''];
+                            newQuestions[idx].rows.push('');
+                            setSurveyQuestions(newQuestions);
+                          }}
+                        >
+                          + Add Row
+                        </button>
+                      </div>
+                      <div className="flex-1">
+                        <label className="block font-semibold mb-1">Columns</label>
+                        {q.columns && q.columns.map((col, colIdx) => (
+                          <div key={colIdx} className="flex items-center mb-1">
+                            <input
+                              type="text"
+                              className="flex-grow border border-gray-300 rounded px-3 py-1"
+                              placeholder={`Column ${colIdx + 1}`}
+                              value={col}
+                              onChange={(e) => {
+                                const newQuestions = [...surveyQuestions];
+                                newQuestions[idx].columns[colIdx] = e.target.value;
+                                setSurveyQuestions(newQuestions);
+                              }}
+                              required
+                            />
+                            <button
+                              type="button"
+                              className="ml-2 text-red-600 hover:text-red-800"
+                              onClick={() => {
+                                const newQuestions = [...surveyQuestions];
+                                newQuestions[idx].columns.splice(colIdx, 1);
+                                if (newQuestions[idx].columns.length === 0) {
+                                  newQuestions[idx].columns.push('');
+                                }
+                                setSurveyQuestions(newQuestions);
+                              }}
+                            >
+                              &times;
+                            </button>
+                          </div>
+                        ))}
+                        <button
+                          type="button"
+                          className="mt-1 text-blue-600 hover:underline"
+                          onClick={() => {
+                            const newQuestions = [...surveyQuestions];
+                            if (!newQuestions[idx].columns) newQuestions[idx].columns = [''];
+                            newQuestions[idx].columns.push('');
+                            setSurveyQuestions(newQuestions);
+                          }}
+                        >
+                          + Add Column
+                        </button>
+                      </div>
+                    </div>
+                  )}
+                  <button
+                    type="button"
+                    className="mt-3 text-red-600 hover:text-red-800"
+                    onClick={() => {
+                      const newQuestions = surveyQuestions.filter((_, i) => i !== idx);
+                      setSurveyQuestions(newQuestions.length > 0 ? newQuestions : [{ id: 1, question: '', type: 'text', options: [''] }]);
+                    }}
+                  >
+                    Remove Question
+                  </button>
+                </div>
+              ))}
+              <button
+                type="button"
+                className="mb-4 text-blue-600 hover:underline"
+                onClick={() => {
+                  const newId = surveyQuestions.length > 0 ? surveyQuestions[surveyQuestions.length - 1].id + 1 : 1;
+                  setSurveyQuestions([...surveyQuestions, { id: newId, question: '', type: 'text', options: [], rows: [''], columns: [''] }]);
+                }}
+              >
+                + Add Question
+              </button>
+              <div className="flex justify-end space-x-4">
+                <button
+                  type="button"
+                  className="px-4 py-2 rounded border border-gray-300 hover:bg-gray-100"
+                  onClick={() => setShowCreateSurveyForm(false)}
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="px-4 py-2 rounded bg-green-600 text-white hover:bg-green-700"
+                >
+                  Submit Survey
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
     </section>
   );
 };
