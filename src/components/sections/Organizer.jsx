@@ -1,5 +1,6 @@
- import React, { useState } from 'react';
+import React, { useState } from 'react';
 import techcon from '../../assets/techcon.png';
+import QRCode from 'react-qr-code';
 import {
   BarChart, Bar, XAxis, YAxis, Tooltip, Legend, PieChart, Pie, Cell, ResponsiveContainer
 } from 'recharts';
@@ -54,6 +55,7 @@ export const Organizer = () => {
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [upcomingEvents, setUpcomingEvents] = useState(initialUpcomingEvents);
   const [cameFromEventsList, setCameFromEventsList] = useState(false);
+  const [showQrCode, setShowQrCode] = useState(false);
 
   const openEventsList = () => {
     setShowEventsList(true);
@@ -95,6 +97,7 @@ export const Organizer = () => {
     const { name, value } = e.target;
     setNewEvent(prev => ({ ...prev, [name]: value }));
   };
+
 
   const handleCreateEventSubmit = (e) => {
     e.preventDefault();
@@ -164,6 +167,17 @@ export const Organizer = () => {
               <h3 className="text-2xl font-bold mb-2 text-blue-900">{latestEvent.title}</h3>
               <p className="text-gray-700 mb-2">{latestEvent.date}</p>
               <p className="text-gray-800">{latestEvent.description}</p>
+              <button
+                onClick={() => setShowQrCode(prev => !prev)}
+                className="mt-4 px-4 py-2 bg-blue-900 text-white rounded hover:bg-blue-800 transition w-max"
+              >
+                {showQrCode ? 'Hide QR Code' : 'Generate QR Code'}
+              </button>
+              {showQrCode && (
+                <div className="mt-6 flex justify-center">
+                  <QRCode value={JSON.stringify(latestEvent)} size={128} />
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -272,7 +286,7 @@ export const Organizer = () => {
             >
               Create Event
             </button>
-              {showCreateEventForm && (
+            {showCreateEventForm && (
               <div className="fixed inset-0 bg-transparent backdrop-blur-sm flex items-center justify-center z-60">
                 <div className="bg-white bg-opacity-90 rounded-lg shadow-lg w-3/4 max-w-3xl p-6 relative text-gray-900">
                   <h2 className="text-2xl font-semibold mb-4 text-gray-900">Create Event</h2>
@@ -365,10 +379,10 @@ export const Organizer = () => {
                         Create
                       </button>
                     </div>
-                  </form>
-                </div>
-              </div>
-              )}
+              </form>
+            </div>
+          </div>
+          )}
             <ul className="max-h-96 overflow-y-auto space-y-2">
               {upcomingEvents.map(event => (
                 <li
