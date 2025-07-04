@@ -33,7 +33,7 @@ export const Home = () => {
   return (
     <section className="min-h-screen bg-white/95 p-8 flex flex-col items-center pt-20">
       <h1 className="text-5xl font-bold mb-8 text-gray-900">
-        Welcome to Talaan<span className="text-blue-900">+</span>
+        Welcome to Gan<span className="text-blue-900">App</span>
       </h1>
 
       <div className="w-full max-w-4xl mb-12">
