@@ -83,7 +83,8 @@ export const Organizer = () => {
   const [newEvent, setNewEvent] = useState({
     title: '',
     description: '',
-    time: '',
+    startTime: '',
+    endTime: '',
     date: '',
     location: '',
     department: ''
@@ -111,7 +112,7 @@ export const Organizer = () => {
       id: upcomingEvents.length + 1,
       title: newEvent.title,
       description: newEvent.description,
-      date: newEvent.date + ' ' + newEvent.time,
+      date: newEvent.date + ' ' + newEvent.startTime + ' - ' + newEvent.endTime,
       location: newEvent.location,
       department: newEvent.department
     };
@@ -120,7 +121,8 @@ export const Organizer = () => {
     setNewEvent({
       title: '',
       description: '',
-      time: '',
+      startTime: '',
+      endTime: '',
       date: '',
       location: '',
       department: ''
@@ -320,32 +322,44 @@ export const Organizer = () => {
                         className="w-full border border-gray-300 rounded px-3 py-2"
                       />
                     </div>
-                    <div className="grid grid-cols-2 gap-4">
-                      <div>
-                        <label className="block text-gray-700 font-semibold mb-1" htmlFor="date">Date</label>
-                        <input
-                          type="date"
-                          id="date"
-                          name="date"
-                          value={newEvent.date}
-                          onChange={handleCreateEventChange}
-                          required
-                          className="w-full border border-gray-300 rounded px-3 py-2"
-                        />
+                      <div className="grid grid-cols-3 gap-4">
+                        <div>
+                          <label className="block text-gray-700 font-semibold mb-1" htmlFor="date">Date</label>
+                          <input
+                            type="date"
+                            id="date"
+                            name="date"
+                            value={newEvent.date}
+                            onChange={handleCreateEventChange}
+                            required
+                            className="w-full border border-gray-300 rounded px-3 py-2"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-gray-700 font-semibold mb-1" htmlFor="startTime">Start Time</label>
+                          <input
+                            type="time"
+                            id="startTime"
+                            name="startTime"
+                            value={newEvent.startTime}
+                            onChange={handleCreateEventChange}
+                            required
+                            className="w-full border border-gray-300 rounded px-3 py-2"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-gray-700 font-semibold mb-1" htmlFor="endTime">End Time</label>
+                          <input
+                            type="time"
+                            id="endTime"
+                            name="endTime"
+                            value={newEvent.endTime}
+                            onChange={handleCreateEventChange}
+                            required
+                            className="w-full border border-gray-300 rounded px-3 py-2"
+                          />
+                        </div>
                       </div>
-                      <div>
-                        <label className="block text-gray-700 font-semibold mb-1" htmlFor="time">Time</label>
-                        <input
-                          type="time"
-                          id="time"
-                          name="time"
-                          value={newEvent.time}
-                          onChange={handleCreateEventChange}
-                          required
-                          className="w-full border border-gray-300 rounded px-3 py-2"
-                        />
-                      </div>
-                    </div>
                     <div>
                       <label className="block text-gray-700 font-semibold mb-1" htmlFor="location">Location</label>
                       <input
