@@ -17,6 +17,7 @@ const latestEvent = {
     "Prof. Emily Johnson"
   ],
   rationale: "The Annual Tech Conference 2024 aims to foster collaboration and innovation among technology professionals by providing a platform for sharing knowledge, networking, and showcasing the latest advancements in the industry.",
+ 
   imageUrl: techcon
 };
 
@@ -31,11 +32,26 @@ export const Home = () => {
         />
       </div>
       <h3 className="mt-4 text-8xl font-bold text-blue-900">{latestEvent.title}</h3>
-      <div className="w-full max-w-6xl px-8 py-6">
-        <p className="text-gray-700 mb-2 text-xl">Date: {latestEvent.date}</p>
-        <p className="text-gray-700 mb-2 text-xl">Time: {latestEvent.time}</p>
-        <p className="text-gray-700 mb-2 text-xl">Venue: {latestEvent.venue}</p>
-        <div className="mb-4">
+      <div className="w-full max-w-6xl px-8 py-6 space-y-6">
+        <div className="flex space-x-24">
+          <div>
+            <h4 className="text-2xl font-semibold text-blue-900 mb-2">Date:</h4>
+            <p className="text-gray-700 text-xl">{latestEvent.date}</p>
+          </div>
+          <div>
+            <h4 className="text-2xl font-semibold text-blue-900 mb-2">Time:</h4>
+            <p className="text-gray-700 text-xl">{latestEvent.time}</p>
+          </div>
+          <div>
+            <h4 className="text-2xl font-semibold text-blue-900 mb-2">Venue:</h4>
+            <p className="text-gray-700 text-xl">{latestEvent.venue}</p>
+          </div>
+        </div>
+        <div>
+          <h4 className="text-2xl font-semibold text-blue-900 mb-2">Rationale:</h4>
+          <p className="text-gray-700 text-lg">{latestEvent.rationale}</p>
+        </div>
+        <div>
           <h4 className="text-2xl font-semibold text-blue-900 mb-2">Guest Speaker/s:</h4>
           <ul className="list-disc list-inside text-gray-800">
             {latestEvent.guestSpeakers.map((speaker, index) => (
@@ -43,7 +59,7 @@ export const Home = () => {
             ))}
           </ul>
         </div>
-        <div className="mb-4">
+        <div>
           <h4 className="text-2xl font-semibold text-blue-900 mb-2">Sponsor/s:</h4>
           <ul className="list-disc list-inside text-gray-800">
             {latestEvent.sponsors.map((sponsor, index) => (
@@ -51,7 +67,6 @@ export const Home = () => {
             ))}
           </ul>
         </div>
-        <p className="text-gray-800 text-lg">{latestEvent.rationale}</p>
       </div>
     </section>
   );
