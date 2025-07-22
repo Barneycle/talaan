@@ -31,7 +31,7 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
 
           <div className="hidden md:flex items-center space-x-8">
 
-          <Link to="/home" className="text-gray-300 hover:text-white transition-colors">Home</Link>
+          <Link to="/" className="text-gray-300 hover:text-white transition-colors">Home</Link>
 
           <Link to="/admin" className="text-gray-300 hover:text-white transition-colors">Admin</Link>
 
@@ -39,7 +39,7 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
 
           <Link to="/participants" className="text-gray-300 hover:text-white transition-colors">Participants</Link>
 
-          <Link to="/" className="text-gray-300 hover:text-blue-300 transition-colors font-semibold border border-white rounded px-3 py-1 hover:bg-white hover:text-blue-900 transition-colors">
+          <Link to="/login" className="text-gray-300 hover:text-blue-300 transition-colors font-semibold border border-white rounded px-3 py-1 hover:bg-white hover:text-blue-900 transition-colors">
             Log In
           </Link>
 

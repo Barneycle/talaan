@@ -11,8 +11,8 @@ function AnimatedRoutes() {
   return (
     <div>
       <Routes location={location} key={location.pathname}>
-        <Route path="/" element={<Login />} />
-        <Route path="/home" element={<Home />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/organizer" element={<Organizer />} />
         <Route path="/participants" element={<Participants />} />
