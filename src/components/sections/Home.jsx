@@ -24,7 +24,7 @@ const latestEvent = {
 export const Home = () => {
   return (
     <section className="min-h-screen bg-white/95 p-0 flex flex-col items-center">
-      <div className="w-full max-w-full rounded-lg overflow-hidden" style={{ height: '35vh' }}>
+      <div className="w-full max-w-full overflow-hidden" style={{ height: '35vh' }}>
         <img
           src={latestEvent.imageUrl}
           alt={latestEvent.title}
