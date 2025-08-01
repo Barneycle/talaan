@@ -32,7 +32,7 @@ export const Participants = () => {
           className="w-full h-full object-cover"
         />
       </div>
-      <h3 className="mt-4 text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-blue-900">{latestEvent.title}</h3>
+      <h3 className="mt-4 text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-blue-900 text-center">{latestEvent.title}</h3>
       <div className="mt-6 space-y-6 max-w-6xl px-4 sm:px-8 w-full">
         <div className="border rounded-lg shadow-md p-6 bg-white">
             <a href={latestEvent.programmeLink} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline text-base sm:text-lg font-semibold block">
@@ -44,16 +44,16 @@ export const Participants = () => {
               View Event Kits
             </a>
         </div>
-        <div className="border rounded-lg shadow-md p-6 bg-white flex flex-wrap justify-between space-x-0 sm:space-x-12 gap-4">
-          <div className="flex-1 min-w-[150px]">
+        <div className="border rounded-lg shadow-md p-6 bg-white flex space-x-24">
+          <div>
             <h4 className="text-xl sm:text-2xl font-semibold text-blue-900 mb-2">Date:</h4>
             <p className="text-gray-700 text-base sm:text-xl">{latestEvent.date}</p>
           </div>
-          <div className="flex-1 min-w-[150px]">
+          <div>
             <h4 className="text-xl sm:text-2xl font-semibold text-blue-900 mb-2">Time:</h4>
             <p className="text-gray-700 text-base sm:text-xl">{latestEvent.time}</p>
           </div>
-          <div className="flex-1 min-w-[150px]">
+          <div>
             <h4 className="text-xl sm:text-2xl font-semibold text-blue-900 mb-2">Venue:</h4>
             <p className="text-gray-700 text-base sm:text-xl">{latestEvent.venue}</p>
           </div>
