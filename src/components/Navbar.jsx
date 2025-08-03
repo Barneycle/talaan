@@ -31,7 +31,7 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
       setMenuItems([
         { name: "Home", to: "/" },
         { name: "View Events", to: "/organizer/view-events" },
-        { name: "Create Event", to: "/organizer/create-event", special: true }
+        { name: "Create Event", to: "/organizer/create-event" }
       ]);
     } else if (path.startsWith("/admin")) {
       setActiveSection("Admin");
@@ -124,13 +124,14 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
                     {item.name}
                   </Link>
                 ) : (
-                  <button
+                  <Link
                     key={item.name}
-                    className="text-gray-300 hover:text-white transition-colors bg-transparent border-none cursor-pointer"
+                    to={item.to}
+                    className="text-gray-300 hover:text-white transition-colors"
                     onClick={() => handleSectionClick(item.name, item.to)}
                   >
                     {item.name}
-                  </button>
+                  </Link>
                 )
               )}
             </div>
