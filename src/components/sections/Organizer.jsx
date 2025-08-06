@@ -1,111 +1,104 @@
-import React, { useState } from 'react';
+import React from 'react';
 import techcon from '../../assets/techcon.png';
-import {
-  BarChart, Bar, XAxis, YAxis, Tooltip, Legend, PieChart, Pie, Cell, ResponsiveContainer
-} from 'recharts';
 
 const latestEvent = {
   title: "Annual Tech Conference 2024",
   date: "June 15, 2024",
-  description: "Join industry leaders and tech enthusiasts for a day of insightful talks, networking, and innovation showcases.",
+  time: "9:00 AM - 5:00 PM",
+  venue: "Grand Convention Center, Cityville",
+  sponsors: [
+    "TechCorp",
+    "InnovateX",
+    "Future Solutions"
+  ],
+  guestSpeakers: [
+    "Dr. Jane Smith",
+    "Mr. John Doe",
+    "Prof. Emily Johnson"
+  ],
+  rationale: "The Annual Tech Conference 2024 aims to foster collaboration and innovation among technology professionals by providing a platform for sharing knowledge, networking, and showcasing the latest advancements in the industry.",
+  programmeLink: "/path/to/programme.pdf",
+  materialsLink: "/path/to/materials.pdf",
   imageUrl: techcon
 };
 
-const barData = [
-  { name: 'Jan', users: 400 },
-  { name: 'Feb', users: 300 },
-  { name: 'Mar', users: 500 },
-  { name: 'Apr', users: 200 },
-  { name: 'May', users: 278 },
-  { name: 'Jun', users: 189 },
-];
-
-const pieData = [
-  { name: 'Positive', value: 85 },
-  { name: 'Neutral', value: 10 },
-  { name: 'Negative', value: 5 },
-];
-
-const COLORS = ['#0088FE', '#00C49F', '#FF8042'];
-
 export const Organizer = () => {
   return (
-    <section className="min-h-screen bg-white/95 p-8 flex pt-20 justify-center">
-      <div className="w-full max-w-4xl">
-        <h2 className="text-3xl font-semibold mb-4 text-black">Latest Event</h2>
-        <div className="bg-white rounded-lg shadow-md overflow-hidden flex flex-col md:flex-row">
-          <img
-            src={latestEvent.imageUrl}
-            alt={latestEvent.title}
-            className="w-full md:w-1/3 object-cover"
-          />
-          <div className="p-6 flex flex-col justify-center">
-            <h3 className="text-2xl font-bold mb-2 text-blue-900">{latestEvent.title}</h3>
-            <p className="text-gray-700 mb-2">{latestEvent.date}</p>
-            <p className="text-gray-800">{latestEvent.description}</p>
+    <section className="min-h-screen bg-white/95 p-0 flex flex-col items-center">
+      <div className="w-full max-w-full overflow-hidden h-[25vh] sm:h-[30vh] md:h-[35vh] lg:h-[40vh]">
+        <img
+          src={latestEvent.imageUrl}
+          alt={latestEvent.title}
+          className="w-full h-full object-cover"
+        />
+      </div>
+      <h3 className="mt-4 text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-blue-900 text-center">{latestEvent.title}</h3>
+      <div className="mt-6 space-y-6 max-w-6xl px-4 sm:px-8 w-full">
+        <div className="border rounded-lg shadow-md p-6 bg-white">
+            <a href={latestEvent.programmeLink} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline text-base sm:text-lg font-semibold block">
+              View Event Programme
+            </a>
+        </div>
+        <div className="border rounded-lg shadow-md p-6 bg-white">
+            <a href={latestEvent.materialsLink} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline text-base sm:text-lg font-semibold block">
+              View Event Kits
+            </a>
+        </div>
+        <div className="border rounded-lg shadow-md p-6 bg-white flex space-x-24">
+          <div>
+            <h4 className="text-xl sm:text-2xl font-semibold text-blue-900 mb-2">Date:</h4>
+            <p className="text-gray-700 text-base sm:text-xl">{latestEvent.date}</p>
+          </div>
+          <div>
+            <h4 className="text-xl sm:text-2xl font-semibold text-blue-900 mb-2">Time:</h4>
+            <p className="text-gray-700 text-base sm:text-xl">{latestEvent.time}</p>
+          </div>
+          <div>
+            <h4 className="text-xl sm:text-2xl font-semibold text-blue-900 mb-2">Venue:</h4>
+            <p className="text-gray-700 text-base sm:text-xl">{latestEvent.venue}</p>
           </div>
         </div>
-
-        <h2 className="text-3xl font-semibold mb-6 mt-12 text-black">Data Analytics Dashboard</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="bg-white rounded-lg shadow-md p-6">
-            <h3 className="text-xl font-bold mb-4 text-blue-900">User Registrations</h3>
-            <ResponsiveContainer width="100%" height={200}>
-              <BarChart data={barData}>
-                <XAxis dataKey="name" />
-                <YAxis />
-                <Tooltip />
-                <Legend />
-                <Bar dataKey="users" fill="#8884d8" />
-              </BarChart>
-            </ResponsiveContainer>
+        <div className="border rounded-lg shadow-md p-6 bg-white">
+          <h4 className="text-xl sm:text-2xl font-semibold text-blue-900 mb-2">Rationale:</h4>
+          <p className="text-gray-700 text-base sm:text-lg">{latestEvent.rationale}</p>
+        </div>
+        <div className="border rounded-lg shadow-md p-6 bg-white">
+          <h4 className="text-xl sm:text-2xl font-semibold text-blue-900 mb-2">Guest Speaker/s:</h4>
+          <ul className="list-disc list-inside text-gray-800">
+            {latestEvent.guestSpeakers.map((speaker, index) => (
+              <li key={index}>{speaker}</li>
+            ))}
+          </ul>
+        </div>
+        <div className="border rounded-lg shadow-md p-6 bg-white">
+          <h4 className="text-xl sm:text-2xl font-semibold text-blue-900 mb-2">Sponsor/s:</h4>
+          <ul className="list-disc list-inside text-gray-800">
+            {latestEvent.sponsors.map((sponsor, index) => (
+              <li key={index}>{sponsor}</li>
+            ))}
+          </ul>
+        </div>
+        <div className="border rounded-lg shadow-md p-6 bg-white flex flex-col items-center">
+          <h4 className="text-xl sm:text-2xl font-semibold text-blue-900 mb-4">QR Code:</h4>
+          <div className="bg-white border-2 border-gray-300 rounded p-4 mb-4">
+            <img 
+              src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://example.com/survey" 
+              alt="Event QR Code" 
+              className="w-48 h-48 mx-auto"
+            />
           </div>
-          <div className="bg-white rounded-lg shadow-md p-6">
-            <h3 className="text-xl font-bold mb-4 text-blue-900">Evaluation Answers</h3>
-            <ResponsiveContainer width="100%" height={200}>
-              <PieChart>
-                <Pie
-                  data={pieData}
-                  cx="50%"
-                  cy="50%"
-                  outerRadius={60}
-                  fill="#8884d8"
-                  dataKey="value"
-                  label
-                >
-                  {pieData.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                  ))}
-                </Pie>
-                <Tooltip />
-              </PieChart>
-            </ResponsiveContainer>
-          </div>
-          <div className="bg-white rounded-lg shadow-md p-6">
-            <h3 className="text-xl font-bold mb-4 text-blue-900">Event Feedback</h3>
-            <ResponsiveContainer width="100%" height={200}>
-              <PieChart>
-                <Pie
-                  data={[
-                    { name: 'Satisfied', value: 92 },
-                    { name: 'Neutral', value: 5 },
-                    { name: 'Dissatisfied', value: 3 }
-                  ]}
-                  cx="50%"
-                  cy="50%"
-                  outerRadius={60}
-                  fill="#82ca9d"
-                  dataKey="value"
-                  label
-                >
-                  <Cell fill="#82ca9d" />
-                  <Cell fill="#8884d8" />
-                  <Cell fill="#ff6666" />
-                </Pie>
-                <Tooltip />
-              </PieChart>
-            </ResponsiveContainer>
-          </div>
+          <a 
+            href="https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=https://example.com/survey" 
+            download="event-qr-code.png"
+            className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
+          >
+            Download QR Code
+          </a>
+        </div>
+        <div className="border rounded-lg shadow-md p-6 bg-white">
+          <a href="/path/to/answer-survey" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline text-base sm:text-lg font-semibold block">
+            View Survey
+          </a>
         </div>
       </div>
     </section>

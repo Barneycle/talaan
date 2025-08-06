@@ -30,7 +30,8 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
       setActiveSection("Organizer");
       setMenuItems([
         { name: "Home", to: "/" },
-        { name: "View Events", to: "/organizer/view-events" },
+        { name: "Events", to: "/organizer/view-events" },
+        { name: "Survey Analytics", to: "/organizer/analytics" },
         { name: "Create Event", to: "/organizer/create-event" }
       ]);
     } else if (path.startsWith("/admin")) {
