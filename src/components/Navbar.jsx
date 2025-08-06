@@ -31,7 +31,7 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
       setMenuItems([
         { name: "Home", to: "/" },
         { name: "Events", to: "/organizer/view-events" },
-        { name: "Survey Analytics", to: "/organizer/analytics" },
+        { name: "Survey Analytics", to: "/organizer/survey-analytics" },
         { name: "Create Event", to: "/organizer/create-event" }
       ]);
     } else if (path.startsWith("/admin")) {
@@ -64,6 +64,7 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
       setMenuItems([
         { name: "Home", to: "/" },
         { name: "View Events", to: "/organizer/view-events" },
+        { name: "Survey Analytics", to: "/organizer/survey-analytics" },
         { name: "Create Event", to: "/organizer/create-event", special: true }
       ]);
     } else if (section === "Admin") {

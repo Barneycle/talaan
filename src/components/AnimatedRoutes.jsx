@@ -6,6 +6,7 @@ import { Participants } from "./sections/Participants";
 import { Login } from "./sections/Login";
 import { CreateEvent } from "./sections/CreateEvent";
 import { CreateSurvey } from "./sections/CreateSurvey";
+import { SurveyAnalytics } from "./sections/SurveyAnalytics";
 
 function AnimatedRoutes() {
   const location = useLocation();
@@ -19,6 +20,7 @@ function AnimatedRoutes() {
         <Route path="/organizer" element={<Organizer />} />
         <Route path="/organizer/create-event" element={<CreateEvent />} />
         <Route path="/organizer/create-survey" element={<CreateSurvey />} />
+        <Route path="/organizer/survey-analytics" element={<SurveyAnalytics />} />
         <Route path="/participants" element={<Participants />} />
       </Routes>
     </div>

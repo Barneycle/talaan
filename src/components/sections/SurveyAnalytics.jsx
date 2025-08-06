@@ -23,12 +23,12 @@ const COLORS = ['#0088FE', '#00C49F', '#FF8042'];
 export const SurveyAnalytics = () => {
   return (
     <section className="min-h-screen bg-white/95 p-8 flex pt-20 justify-center">
-      <div className="w-full max-w-4xl">
+      <div className="w-full max-w-6xl">
         <h2 className="text-3xl font-semibold mb-6 text-black">Data Analytics Dashboard</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="bg-white rounded-lg shadow-md p-6">
-            <h3 className="text-xl font-bold mb-4 text-blue-900">User Registrations</h3>
-            <ResponsiveContainer width="100%" height={200}>
+        <div className="grid grid-cols-1 md:grid-cols-1 gap-8">
+          <div className="bg-white rounded-lg shadow-md p-8">
+            <h3 className="text-2xl font-bold mb-6 text-blue-900">User Registrations</h3>
+            <ResponsiveContainer width="100%" height={300}>
               <BarChart data={barData}>
                 <XAxis dataKey="name" />
                 <YAxis />
@@ -37,16 +37,19 @@ export const SurveyAnalytics = () => {
                 <Bar dataKey="users" fill="#8884d8" />
               </BarChart>
             </ResponsiveContainer>
+            <a href="/download/survey-data" className="text-blue-600 hover:underline text-base sm:text-lg font-semibold block mt-4">
+              Download Data
+            </a>
           </div>
-          <div className="bg-white rounded-lg shadow-md p-6">
-            <h3 className="text-xl font-bold mb-4 text-blue-900">Evaluation Answers</h3>
-            <ResponsiveContainer width="100%" height={200}>
+          <div className="bg-white rounded-lg shadow-md p-8">
+            <h3 className="text-2xl font-bold mb-6 text-blue-900">Evaluation Answers</h3>
+            <ResponsiveContainer width="100%" height={300}>
               <PieChart>
                 <Pie
                   data={pieData}
                   cx="50%"
                   cy="50%"
-                  outerRadius={60}
+                  outerRadius={120}
                   fill="#8884d8"
                   dataKey="value"
                   label
@@ -59,9 +62,9 @@ export const SurveyAnalytics = () => {
               </PieChart>
             </ResponsiveContainer>
           </div>
-          <div className="bg-white rounded-lg shadow-md p-6">
-            <h3 className="text-xl font-bold mb-4 text-blue-900">Event Feedback</h3>
-            <ResponsiveContainer width="100%" height={200}>
+          <div className="bg-white rounded-lg shadow-md p-8">
+            <h3 className="text-2xl font-bold mb-6 text-blue-900">Event Feedback</h3>
+            <ResponsiveContainer width="100%" height={300}>
               <PieChart>
                 <Pie
                   data={[
@@ -71,7 +74,7 @@ export const SurveyAnalytics = () => {
                   ]}
                   cx="50%"
                   cy="50%"
-                  outerRadius={60}
+                  outerRadius={120}
                   fill="#82ca9d"
                   dataKey="value"
                   label

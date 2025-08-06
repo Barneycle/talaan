@@ -100,6 +100,7 @@ export const Organizer = () => {
             View Survey
           </a>
         </div>
+        
       </div>
     </section>
   );
