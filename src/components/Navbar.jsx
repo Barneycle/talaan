@@ -20,19 +20,19 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
   useEffect(() => {
     // Update menu items based on current path
     const path = location.pathname;
-    if (path === "/organizer/create-event") {
+    if (path === "/organizer/create-event" || path === "/organizer/create-survey") {
       setActiveSection("CreateEvent");
       setMenuItems([
         { name: "Home", to: "/" },
-        { name: "View Events", to: "/organizer/view-events" }
+        { name: "Events", to: "/organizer/view-events" },
+        { name: "Survey Analytics", to: "/organizer/survey-analytics" }
       ]);
     } else if (path.startsWith("/organizer")) {
       setActiveSection("Organizer");
       setMenuItems([
         { name: "Home", to: "/" },
         { name: "Events", to: "/organizer/view-events" },
-        { name: "Survey Analytics", to: "/organizer/survey-analytics" },
-        { name: "Create Event", to: "/organizer/create-event" }
+        { name: "Survey Analytics", to: "/organizer/survey-analytics" }
       ]);
     } else if (path.startsWith("/admin")) {
       setActiveSection("Admin");

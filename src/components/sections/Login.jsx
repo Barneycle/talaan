@@ -31,21 +31,33 @@ export const Login = () => {
               placeholder="Enter your password"
             />
           </div>
-          <div className="flex space-x-4">
-            <button
-              type="button"
-              onClick={handleLogin}
-              className="flex-1 bg-blue-900 text-white font-semibold py-2 rounded hover:bg-blue-800 transition"
-            >
-              Log In
-            </button>
-            <button
-              type="button"
-              className="flex-1 bg-gray-300 text-gray-900 font-semibold py-2 rounded hover:bg-gray-400 transition"
-            >
-              Sign Up
-            </button>
+          <button
+            type="button"
+            onClick={handleLogin}
+            className="w-full bg-blue-900 text-white font-semibold py-2 rounded hover:bg-blue-800 transition"
+          >
+            Log In
+          </button>
+          <div className="text-center">
+            <a href="#" className="text-blue-600 hover:text-blue-800 text-sm">
+              Forgot password?
+            </a>
           </div>
+          <div className="relative">
+            <div className="absolute inset-0 flex items-center">
+              <div className="w-full border-t border-gray-300"></div>
+            </div>
+            <div className="relative flex justify-center text-sm">
+              <span className="px-2 bg-white text-gray-500">or</span>
+            </div>
+          </div>
+          <button
+            type="button"
+            onClick={() => navigate('/registration')}
+            className="w-full bg-gray-200 text-gray-800 font-semibold py-2 rounded hover:bg-gray-300 transition"
+          >
+            Create New Account
+          </button>
         </form>
       </div>
     </section>

@@ -1,20 +1,102 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Navbar } from '../../components/Navbar';
+
+const FileDropzone = ({ label, name, multiple = false, accept, onFileChange }) => {
+  const fileInputRef = useRef(null);
+  const [dragActive, setDragActive] = useState(false);
+  const [fileNames, setFileNames] = useState([]);
+
+  const handleFiles = (files) => {
+    const fileArray = Array.from(files);
+    setFileNames(fileArray.map(f => f.name));
+    onFileChange({ target: { name, files } });
+  };
+
+  const handleDrag = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (e.type === 'dragenter' || e.type === 'dragover') {
+      setDragActive(true);
+    } else if (e.type === 'dragleave') {
+      setDragActive(false);
+    }
+  };
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setDragActive(false);
+    if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+      handleFiles(e.dataTransfer.files);
+      e.dataTransfer.clearData();
+    }
+  };
+
+  return (
+    <div className="mb-6">
+      <label className="block text-lg font-semibold text-black mb-2">{label}</label>
+      <div
+        className={`flex flex-col items-center justify-center border-2 border-dashed rounded-lg cursor-pointer p-6 transition-colors duration-300 ${
+          dragActive ? 'border-blue-600 bg-blue-50' : 'border-blue-400 bg-white'
+        }`}
+        onClick={() => fileInputRef.current && fileInputRef.current.click()}
+        onDragEnter={handleDrag}
+        onDragOver={handleDrag}
+        onDragLeave={handleDrag}
+        onDrop={handleDrop}
+      >
+        <input
+          type="file"
+          name={name}
+          multiple={multiple}
+          accept={accept}
+          ref={fileInputRef}
+          className="hidden"
+          onChange={onFileChange}
+        />
+        <svg
+          className="w-12 h-12 mb-3 text-blue-600"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+        </svg>
+        <p className="text-blue-600 font-medium">
+          Drag & drop files here or click to select
+        </p>
+        {fileNames.length > 0 && (
+          <ul className="mt-2 text-sm text-blue-700">
+            {fileNames.map((name, idx) => (
+              <li key={idx}>{name}</li>
+            ))}
+          </ul>
+        )}
+      </div>
+    </div>
+  );
+};
 
 export const CreateEvent = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     bannerFile: null,
     title: '',
-    description: '',
-    date: '',
-    time: '',
-    venue: '',
-    capacity: '',
-    price: '',
-    category: '',
-    tags: '',
-    bannerUrl: ''
+    rationale: '',
+    startDate: '',
+    endDate: '',
+    startTime: '',
+    endTime: '',
+    sponsors: [],
+    guestSpeakers: [],
+    eventKitsFile: null,
+    eventProgrammeFile: null,
+    sponsorImages: [],
+    speakerImages: []
   });
 
   const [loading, setLoading] = useState(false);
@@ -29,13 +111,28 @@ export const CreateEvent = () => {
   };
 
   const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setFormData(prev => ({
-        ...prev,
-        bannerFile: file
-      }));
+    const { name, files } = e.target;
+    if (files && files.length > 0) {
+      if (name === 'sponsorImages' || name === 'speakerImages') {
+        setFormData(prev => ({
+          ...prev,
+          [name]: Array.from(files)
+        }));
+      } else {
+        setFormData(prev => ({
+          ...prev,
+          [name]: files[0]
+        }));
+      }
     }
+  };
+
+  const handleArrayChange = (e, arrayName) => {
+    const { value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [arrayName]: value.split(',').map(item => item.trim()).filter(item => item)
+    }));
   };
 
   const handleSubmit = async (e) => {
@@ -44,8 +141,7 @@ export const CreateEvent = () => {
     setError(null);
 
     try {
-      // Form submission logic here
-      console.log('Form submitted:', formData);
+      console.log('Event creation form submitted:', formData);
       navigate('/organizer');
     } catch (err) {
       setError(err.message);
@@ -56,157 +152,186 @@ export const CreateEvent = () => {
 
   return (
     <>
-      <section className="min-h-screen bg-white/95 p-8 flex pt-20 justify-center">
-        <div className="w-full max-w-4xl">
-          <h2 className="text-3xl font-semibold mb-4 text-black">Create New Event</h2>
-          <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow-md p-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Event Title</label>
-                <input
-                  type="text"
-                  name="title"
-                  value={formData.title}
-                  onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  required
-                />
+      <section className="min-h-screen bg-white/95 p-0 flex flex-col items-center">
+        <div className="w-full max-w-6xl px-4 sm:px-8">
+          <div className="mt-12 space-y-6 w-full">
+            <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow-lg p-8 space-y-6 relative">
+              {/* Arrow icon in top left corner */}
+              <div className="absolute top-4 left-4">
+                <svg 
+                  className="w-10 h-10 text-blue-600 cursor-pointer hover:text-blue-800 transition-colors"
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24"
+                  onClick={() => navigate('/organizer')}
+                  aria-label="Back to organizer"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
+                </svg>
               </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Date</label>
-                <input
-                  type="date"
-                  name="date"
-                  value={formData.date}
-                  onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  required
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Time</label>
-                <input
-                  type="time"
-                  name="time"
-                  value={formData.time}
-                  onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  required
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Venue</label>
-                <input
-                  type="text"
-                  name="venue"
-                  value={formData.venue}
-                  onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  required
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Capacity</label>
-                <input
-                  type="number"
-                  name="capacity"
-                  value={formData.capacity}
-                  onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  required
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Price</label>
-                <input
-                  type="number"
-                  name="price"
-                  value={formData.price}
-                  onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  required
-                />
-              </div>
+            
+            {/* Banner Upload */}
+            <div className="mt-8">
+              <FileDropzone
+                label="Event Banner"
+                name="bannerFile"
+                accept="image/*"
+                onFileChange={handleFileChange}
+              />
             </div>
-            <div className="mt-4">
-              <label className="block text-sm font-medium text-gray-700 mb-2">Description</label>
-              <textarea
-                name="description"
-                value={formData.description}
+
+            {/* Event Title */}
+            <div className="space-y-2">
+              <label className="block text-lg font-semibold text-black">Event Title *</label>
+              <input
+                type="text"
+                name="title"
+                value={formData.title}
                 onChange={handleInputChange}
-                rows="4"
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent text-black"
+                placeholder="Enter event title"
                 required
               />
             </div>
-            <div className="mt-4">
-              <label className="block text-sm font-medium text-gray-700 mb-2">Upload Banner</label>
-              <input
-                type="file"
-                name="bannerFile"
-                onChange={handleFileChange}
-                accept="image/*"
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+
+            {/* Rationale */}
+            <div className="space-y-2">
+              <label className="block text-lg font-semibold text-black">Rationale *</label>
+              <textarea
+                name="rationale"
+                value={formData.rationale}
+                onChange={handleInputChange}
+                rows="4"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent text-black"
+                placeholder="Describe your event"
+                required
               />
             </div>
-            {error && <div className="text-red-500 mt-4">{error}</div>}
-            <div className="mt-6">
-              <button
-                type="submit"
-                disabled={loading}
-                className="w-full bg-blue-900 text-white py-2 px-4 rounded-md hover:bg-blue-800 transition duration-200 disabled:opacity-50"
-              >
-                {loading ? 'Creating...' : 'Create Event'}
-              </button>
-            </div>
-          </form>
-        </div>
-      </section>
 
-      <section className="min-h-screen bg-white/95 p-0 flex flex-col items-center">
-        <div className="w-full max-w-full overflow-hidden h-[25vh] sm:h-[30vh] md:h-[35vh] lg:h-[40vh]">
-          <img
-            src="/path/to/qr-code-image.png"
-            alt="QR Code"
-            className="w-full h-full object-cover"
-          />
-        </div>
-        <div className="mt-6 space-y-6 max-w-6xl px-4 sm:px-8 w-full">
-          <div className="border rounded-lg shadow-md p-6 bg-white flex flex-col items-center">
-            <h4 className="text-xl sm:text-2xl font-semibold text-blue-900 mb-4">Scan QR Code:</h4>
-            <button
-              type="button"
-              className="text-blue-600 hover:underline text-base sm:text-lg font-semibold"
-              onClick={() => {
-                const input = document.getElementById('cameraInput');
-                if (input) {
-                  input.click();
-                }
-              }}
-            >
-              Open Camera to Scan QR Code
-            </button>
+          {/* Date and Time Section */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="space-y-2">
+              <label className="block text-lg font-semibold text-black">Start Date *</label>
+              <input
+                type="date"
+                name="startDate"
+                value={formData.startDate}
+                onChange={handleInputChange}
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent text-black"
+                required
+              />
+            </div>
+            <div className="space-y-2">
+              <label className="block text-lg font-semibold text-black">End Date *</label>
+              <input
+                type="date"
+                name="endDate"
+                value={formData.endDate}
+                onChange={handleInputChange}
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent text-black"
+                required
+              />
+            </div>
+            <div className="space-y-2">
+              <label className="block text-lg font-semibold text-black">Start Time *</label>
+              <input
+                type="time"
+                name="startTime"
+                value={formData.startTime}
+                onChange={handleInputChange}
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent text-black"
+                required
+              />
+            </div>
+            <div className="space-y-2">
+              <label className="block text-lg font-semibold text-black">End Time *</label>
+              <input
+                type="time"
+                name="endTime"
+                value={formData.endTime}
+                onChange={handleInputChange}
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent text-black"
+                required
+              />
+            </div>
+          </div>
+
+          {/* Sponsors */}
+          <div className="space-y-2">
+            <label className="block text-lg font-semibold text-black">Sponsors</label>
             <input
-              type="file"
-              accept="image/*"
-              capture="environment"
-              id="cameraInput"
-              className="hidden"
-              onChange={(e) => {
-                const file = e.target.files[0];
-                if (file) {
-                  console.log('Captured image file:', file);
-                }
-              }}
+              type="text"
+              name="sponsors"
+              value={formData.sponsors.join(', ')}
+              onChange={(e) => handleArrayChange(e, 'sponsors')}
+              placeholder="Sponsor1, Sponsor2, Sponsor3"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent text-black"
             />
           </div>
-          <div className="border rounded-lg shadow-md p-6 bg-white">
-            <a href="/path/to/answer-survey" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline text-base sm:text-lg font-semibold block">
-              Answer Survey
-            </a>
+
+          {/* Sponsor Images Upload */}
+          <FileDropzone
+            label="Sponsor Images"
+            name="sponsorImages"
+            multiple
+            accept="image/*"
+            onFileChange={handleFileChange}
+          />
+
+          {/* Guest Speakers */}
+          <div className="space-y-2">
+            <label className="block text-lg font-semibold text-black">Guest Speakers</label>
+            <input
+              type="text"
+              name="guestSpeakers"
+              value={formData.guestSpeakers.join(', ')}
+              onChange={(e) => handleArrayChange(e, 'guestSpeakers')}
+              placeholder="Speaker1, Speaker2, Speaker3"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent text-black"
+            />
           </div>
-        </div>
-      </section>
-    </>
+
+          {/* Guest Speaker Images Upload */}
+          <FileDropzone
+            label="Guest Speaker Images"
+            name="speakerImages"
+            multiple
+            accept="image/*"
+            onFileChange={handleFileChange}
+          />
+
+          {/* Event Kits Upload */}
+          <FileDropzone
+            label="Event Kits"
+            name="eventKitsFile"
+            accept="*/*"
+            onFileChange={handleFileChange}
+          />
+
+          {/* Event Programme Upload */}
+          <FileDropzone
+            label="Event Programme"
+            name="eventProgrammeFile"
+            accept=".pdf,.doc,.docx"
+            onFileChange={handleFileChange}
+          />
+
+          {error && <div className="text-red-500 mt-4">{error}</div>}
+          
+          <div className="flex justify-end mt-8">
+            <button
+              type="submit"
+              disabled={loading}
+              className="bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 transition duration-200 disabled:opacity-50 font-semibold"
+              onClick={() => navigate('/organizer/create-survey')}
+            >
+              {loading ? 'Next...' : 'Next'}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</>
   );
 };
